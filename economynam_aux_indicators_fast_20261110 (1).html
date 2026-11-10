@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경제남 | 보조 경제지표 한 달 차트</title>
+<meta name="description" content="경제남 보조 경제지표: 지표를 선택하여 최근 1개월 그래프와 공식 출처를 확인하세요.">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#17243c;--muted:#61718c;--line:#e2e8f0;--blue:#235ac9;--teal:#087e78;--shadow:0 8px 30px rgba(18,39,75,.065)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Apple SD Gothic Neo,Malgun Gothic,system-ui,sans-serif;line-height:1.65}.wrap{max-width:1150px;margin:auto;padding:26px 19px 60px}.hero{background:linear-gradient(125deg,#142d54,#255b85);color:#fff;border-radius:22px;padding:28px 32px;margin-bottom:23px}.hero small{letter-spacing:.14em;color:#c5e3ee;font-weight:800}.hero h1{font-size:clamp(25px,4vw,37px);line-height:1.25;margin:10px 0}.hero p{margin:0;color:#d9e7f3}.meta{font-size:13px;margin-top:14px;color:#d8e8f3}.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.side{padding:17px}.sectionhead{font-size:14px;font-weight:800;margin:2px 4px 15px}.group{font-size:12px;color:#6c7d95;letter-spacing:.04em;font-weight:800;margin:18px 4px 7px}.indicator{display:flex;text-align:left;width:100%;align-items:center;gap:10px;border:1px solid transparent;background:transparent;padding:11px 12px;margin:4px 0;border-radius:12px;cursor:pointer;color:var(--ink);font-size:14px;font-weight:650}.indicator:hover{background:#f1f6ff}.indicator.active{background:#eaf1ff;border-color:#bfd2f4;color:#1544a3}.indicator .sym{margin-left:auto;font-size:11px;color:#7b8aa3;font-weight:500}.main{padding:25px;min-height:650px}.tag{display:inline-block;background:#eaf6f4;color:#087e78;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800}.main h2{font-size:26px;margin:13px 0 4px}.desc{color:#52637d;margin:0 0 17px;font-size:14px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}.stat{padding:13px;background:#f7f9fd;border-radius:12px}.stat label{display:block;color:#6b7890;font-size:12px}.stat b{display:block;font-size:14px;margin-top:4px}.chart{height:420px;border:1px solid #e4eaf1;border-radius:14px;overflow:hidden;background:#fff;position:relative}.chart img{width:100%;height:100%;object-fit:contain}.chart .tv{width:100%;height:100%}.note{font-size:13px;color:#64728b;margin:13px 0}.actions{display:flex;gap:10px;flex-wrap:wrap}.actions a,.actions button{border:1px solid #b7cbe7;border-radius:10px;padding:9px 15px;text-decoration:none;color:#174c98;background:#fff;font-size:13px;font-weight:800;cursor:pointer}.actions a.primary{background:#1e56af;color:white;border-color:#1e56af}.tip{margin-top:19px;padding:15px;background:#f1f6ff;border-radius:12px;color:#364d6c;font-size:14px}.foot{margin-top:22px;padding:20px 23px;color:#687790;font-size:13px}.foot a{color:#2759a8}.warning{background:#fff8e9;border:1px solid #f7e6bd;border-radius:12px;padding:12px 15px;margin-top:16px;color:#775c2c;font-size:13px}.fallback-bar{margin-top:12px;padding:14px 16px;background:#eaf3ff;border:1px solid #bdd4f5;border-radius:12px}.fallback-bar a{display:inline-block;background:#235ac9;color:#fff;padding:11px 15px;border-radius:9px;font-weight:800;text-decoration:none}.fallback-bar p{margin:8px 0 0;color:#456080;font-size:13px}.loading{display:flex;align-items:center;justify-content:center;height:100%;color:#60728d;padding:22px;text-align:center}button:focus-visible,a:focus-visible{outline:3px solid #7ab6f7;outline-offset:2px}@media(max-width:790px){.layout{grid-template-columns:1fr}.side{padding:14px}.indicators{display:grid;grid-template-columns:1fr 1fr;gap:3px}.group{grid-column:1/-1}.indicator{font-size:12px;padding:10px 9px}.indicator .sym{display:none}.main{padding:17px}.chart{height:350px}.stats{grid-template-columns:1fr}.hero{padding:23px}}
+
+.chart .tv,.chart .cached-plot{position:absolute;inset:0;width:100%;height:100%}.chart .cached-plot{display:none}.chart .cached-plot.visible{display:block}.chart img{display:block}.load-overlay{position:absolute;inset:0;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;text-align:center;color:#426081;z-index:3;padding:20px}.pulse{width:25px;height:25px;border:3px solid #ddeafa;border-top-color:#235ac9;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}@keyframes spin{to{transform:rotate(360deg)}}.fast-note{background:#e9f8f2;color:#146548;border-radius:9px;padding:8px 11px;margin:0 0 12px;font-size:12px;font-weight:700}
+</style>
+</head><body><div class="wrap">
+<header class="hero"><small>경제남 · ECONOMY NAM</small><h1>보조 경제지표 대시보드</h1><p>지표를 선택하면 차트가 표시됩니다. 이미 열어 본 차트는 다시 불러오지 않고 즉시 전환됩니다.</p><div class="meta">제작 기준 2026년 11월 10일 · 데이터는 제공기관의 최신 관측일을 따릅니다 · 외부 그래프가 차단되면 새 창에서 확인</div></header>
+<div class="layout"><nav class="panel side" aria-label="지표 선택"><div class="sectionhead">원하는 지표를 선택하세요 <span style="color:#7485a0">(총 12개)</span></div><div id="indicators" class="indicators"></div></nav>
+<main class="panel main"><span class="tag" id="category">시장 위험</span><h2 id="name">VIX 공포지수</h2><p class="desc" id="description"></p><div class="stats"><div class="stat"><label>차트 기간</label><b id="range">최근 1개월</b></div><div class="stat"><label>수치·갱신 주기</label><b id="frequency">최신 관측 기준</b></div></div><div class="fast-note">⚡ 한 번 불러온 차트는 저장해 두었다가 지표를 다시 선택하면 즉시 보여줍니다. (현재 페이지를 열어 둔 동안)</div><div id="chart" class="chart" aria-live="polite"></div><div class="fallback-bar"><a id="directChart" href="https://fred.stlouisfed.org/series/VIXCLS" target="_blank" rel="noopener noreferrer">📈 원본 그래프 바로 열기 ↗</a><p id="directNote">내부 그래프가 보이지 않으면 위 버튼을 눌러 주세요. 원본 사이트에서 기간을 1개월(1M)로 선택할 수 있습니다.</p></div><p class="note" id="chartNote"></p><div class="actions"><a id="original" class="primary" href="#" target="_blank" rel="noopener noreferrer">원본 데이터 페이지 열기 ↗</a><button id="reload" type="button">그래프 새로고침</button></div><div class="tip" id="insight"></div><div class="warning">주의: 일간 지표는 비거래일에 값이 없을 수 있고, 월간 지표는 최근 한 달 그래프에 관측치가 1개만 나타날 수 있습니다. 차트의 최종 관측일은 발행일과 다릅니다. 차트가 보이지 않으면 파란색 '원본 그래프 바로 열기' 버튼을 눌러 주세요. 외부 서비스의 접속 제한은 이 페이지에서 해제할 수 없습니다.</div></main></div>
+<footer class="panel foot">경제남 — 경제를 쉽게, 시장을 깊이 있게.<br>FRED 그래프는 미국 세인트루이스 연방준비은행의 공개 차트 이미지를 참조합니다. TradingView 차트에는 해당 제공사의 저작권 및 이용약관이 적용됩니다. 원천기관 자료와 외부 차트의 갱신시점이 다를 수 있습니다. 지표의 단위와 선물 계약월을 확인하고 투자 판단에 활용하세요. <br><a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">FRED</a> · <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></footer>
+</div>
+<script>
+const items=[
+{id:'vix',group:'시장 위험',name:'VIX 공포지수',symbol:'VIXCLS',kind:'fred',freq:'일간 · 지수',desc:'미국 주식시장(S&P 500)의 향후 변동성에 대한 시장 기대를 보여줍니다.',insight:'VIX 상승은 변동성 우려 증가를 의미할 수 있지만, 주가의 방향을 확정하는 지표는 아닙니다.'},
+{id:'dxy',group:'시장 위험',name:'달러인덱스(DXY)',symbol:'TVC:DXY',kind:'tv',url:'https://www.tradingview.com/symbols/TVC-DXY/',freq:'거래일 · 지수',desc:'미 달러의 가치를 주요 통화 바스켓과 비교한 지수입니다.',insight:'달러 강세는 원자재·신흥국 금융시장에 영향을 미칠 수 있지만 달러/원과 동일한 움직임은 아닙니다.'},
+{id:'us2',group:'금리·신용',name:'미국채 2년물 금리',symbol:'DGS2',kind:'fred',freq:'거래일 · %',desc:'미국 2년 만기 국채의 시장 수익률로 연준 통화정책 기대를 반영합니다.',insight:'금리 변화는 퍼센트포인트 또는 bp(1bp=0.01%p)로 비교해야 합니다.'},
+{id:'spread',group:'금리·신용',name:'미국채 10년물–2년물 금리차',symbol:'T10Y2Y',kind:'fred',freq:'거래일 · %p',desc:'미국채 10년물 금리에서 2년물 금리를 뺀 장단기 금리차입니다.',insight:'금리차가 음수라면 장단기 금리 역전입니다. 경기 둔화의 위험 신호로 활용되지만 예측이 확정적인 것은 아닙니다.'},
+{id:'hy',group:'금리·신용',name:'하이일드 신용스프레드',symbol:'BAMLH0A0HYM2',kind:'fred',freq:'거래일 · %p',desc:'미국 투기등급 회사채의 국채 대비 추가 수익률(OAS)을 보여줍니다.',insight:'스프레드가 확대되면 위험 기업에 대한 시장의 신용 우려가 커졌을 가능성이 있습니다.'},
+{id:'iron',group:'원자재',name:'철광석 가격',symbol:'TVC:IRONORE',kind:'external',url:'https://www.tradingview.com/search/?query=iron%20ore',freq:'시장·규격별 상이',desc:'철강 생산 원료인 철광석 가격. 현물/선물, 품위, 항구별로 가격이 달라집니다.',insight:'철광석 가격은 중국 철강수요와 공급 차질에 민감합니다. 현재 신뢰할 수 있는 일관된 공개 1개월 차트 출처를 고정하지 않아 원본 검색 화면으로 연결합니다.'},
+{id:'gas',group:'원자재',name:'천연가스 선물',symbol:'NYMEX:NG1!',kind:'tv',url:'https://www.tradingview.com/symbols/NYMEX-NG1!/',freq:'일간 · USD/MMBtu',desc:'미국 헨리허브 기준 천연가스 연속선물입니다. 산업용 한국 도시가스 요금과 다릅니다.',insight:'연속선물은 계약월 교체에 따라 가격에 불연속이 생길 수 있습니다.'},
+{id:'corn',group:'원자재',name:'옥수수 선물',symbol:'CBOT:ZC1!',kind:'tv',url:'https://www.tradingview.com/symbols/CBOT-ZC1!/',freq:'일간 · 센트/부셸',desc:'CBOT 옥수수 연속선물 가격입니다.',insight:'기상·작황·수출 수요가 가격에 영향을 줍니다. 연속선물의 계약월 변경을 확인하세요.'},
+{id:'wheat',group:'원자재',name:'소맥(밀) 선물',symbol:'CBOT:ZW1!',kind:'tv',url:'https://www.tradingview.com/symbols/CBOT-ZW1!/',freq:'일간 · 센트/부셸',desc:'CBOT 밀 연속선물 가격입니다.',insight:'밀 가격은 세계 식품물가에 영향을 줄 수 있습니다. 운송·환율·제분 비용도 따로 고려해야 합니다.'},
+{id:'pmi',group:'중국·경기',name:'중국 제조업 PMI',symbol:'',kind:'external',url:'https://www.stats.gov.cn/english/',freq:'월간 · 확산지수',desc:'중국 제조업 구매관리자지수(PMI)는 제조업 활동의 확장·위축을 나타내는 월간 지표입니다.',insight:'일반적으로 50 이상은 확장, 50 미만은 위축을 의미합니다. 월 1회 발표되므로 최근 1개월 안에 점이 한 개일 수 있습니다. 공식 통계 사이트에서 발표일과 값을 확인하세요.'},
+{id:'cpi',group:'중국·경기',name:'미국 소비자물가지수(CPI)',symbol:'CPIAUCSL',kind:'fred',freq:'월간 · 지수',desc:'미국 도시 소비자가 구매하는 상품과 서비스의 평균 가격 변화를 나타내는 지수입니다.',insight:'CPI 수준 자체와 전년동월 대비 상승률은 다른 지표입니다. 아래 그래프는 지수 수준을 표시합니다.'},
+{id:'jobs',group:'중국·경기',name:'미국 실업률',symbol:'UNRATE',kind:'fred',freq:'월간 · %',desc:'미국 노동시장 상황을 나타내는 실업률입니다.',insight:'월간 발표 지표는 최근 1개월 안에 한 번만 갱신될 수 있습니다. 고용 상황은 신규 고용자 수 등과 함께 보세요.'},
+];
+let selected='vix';
+const $=(id)=>document.getElementById(id);
+const groups=[...new Set(items.map(x=>x.group))];
+const cache=new Map(); // 방문한 차트 DOM을 보존해 재다운로드·재초기화 방지
+let activeId=null;
+for(const group of groups){
+ const h=document.createElement('div');h.className='group';h.textContent=group;$('indicators').appendChild(h);
+ for(const item of items.filter(i=>i.group===group)){
+  const b=document.createElement('button');b.type='button';b.className='indicator';b.dataset.id=item.id;
+  b.innerHTML='<span>'+item.name+'</span><span class="sym">'+(item.kind==='fred'?'FRED':item.kind==='tv'?'CHART':'출처')+'</span>';
+  b.addEventListener('click',()=>show(item.id));$('indicators').appendChild(b);
+ }
+}
+function dates(){const now=new Date();const start=new Date(now);start.setMonth(start.getMonth()-1);const fmt=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');return [fmt(start),fmt(now)];}
+function fredSrc(it){const [from,to]=dates();return 'https://fred.stlouisfed.org/graph/fredgraph.png?id='+encodeURIComponent(it.symbol)+'&cosd='+from+'&coed='+to+'&width=1100&height=550';}
+function overlay(msg){const el=document.createElement('div');el.className='load-overlay';el.innerHTML='<div><div class="pulse"></div>'+msg+'</div>';return el;}
+function makeChart(it){
+ const root=document.createElement('div');root.className='cached-plot';root.dataset.id=it.id;
+ if(it.kind==='fred'){
+  const load=overlay('FRED 1개월 차트를 불러오는 중입니다.');root.appendChild(load);
+  const img=document.createElement('img');img.alt=it.name+' 최근 1개월 공식 그래프';img.decoding='async';img.loading='eager';
+  img.onload=()=>load.remove();img.onerror=()=>{load.innerHTML='<div>차트 제공 사이트에서 이미지를 불러오지 못했습니다.<br>아래 원본 그래프를 이용해 주세요.</div>'};
+  img.src=fredSrc(it);root.appendChild(img);
+ } else if(it.kind==='tv'){
+  const load=overlay('TradingView 차트를 처음 한 번 불러오고 있습니다.<br>이후 다시 선택하면 즉시 전환됩니다.');root.appendChild(load);
+  const block=document.createElement('div');block.className='tv tradingview-widget-container';
+  const inner=document.createElement('div');inner.className='tradingview-widget-container__widget';inner.style.cssText='height:100%;width:100%';block.appendChild(inner);
+  const script=document.createElement('script');script.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';script.async=true;script.type='text/javascript';
+  script.textContent=JSON.stringify({autosize:true,symbol:it.symbol,interval:'D',range:'1M',timezone:'Asia/Seoul',theme:'light',style:'3',locale:'kr',allow_symbol_change:false,hide_top_toolbar:true,hide_side_toolbar:true,hide_volume:true,withdateranges:false,save_image:false,calendar:false,backgroundColor:'#ffffff',gridColor:'rgba(46,46,46,0.05)'});
+  block.appendChild(script);root.appendChild(block);
+  // 외부 위젯은 로드 완료 이벤트를 안정적으로 제공하지 않습니다.
+  // iframe 출현 시 로딩 오버레이를 지우고, 실패 시 원본 링크를 사용하도록 안내합니다.
+  const obs=new MutationObserver(()=>{
+    const frame=block.querySelector('iframe');
+    if(frame){frame.addEventListener('load',()=>load.remove(),{once:true});obs.disconnect();}
+  });obs.observe(block,{childList:true,subtree:true});
+  script.onerror=()=>{obs.disconnect();load.innerHTML='<div>외부 차트 연결이 제한되었습니다.<br>아래 원본 그래프 버튼을 사용해 주세요.</div>'};
+ } else {
+  root.innerHTML='<div class="loading"><div><strong>고정 그래프 연결 대기</strong><br>통일된 공개 시계열이 없어 임의의 그래프를 제공하지 않습니다.<br>아래 원본 링크를 이용해 주세요.</div></div>';
+ }
+ return root;
+}
+function show(id){
+ const it=items.find(i=>i.id===id);if(!it)return;selected=id;
+ document.querySelectorAll('.indicator').forEach(b=>{b.classList.toggle('active',b.dataset.id===id);b.setAttribute('aria-pressed',String(b.dataset.id===id));});
+ $('category').textContent=it.group;$('name').textContent=it.name;$('description').textContent=it.desc;$('frequency').textContent=it.freq;
+ $('insight').textContent='경제남의 쉬운 해설 · '+it.insight;$('range').textContent='최근 1개월 (월간 통계는 발표치 1~2개)';
+ const c=$('chart');if(activeId&&cache.has(activeId))cache.get(activeId).classList.remove('visible');
+ if(!cache.has(id)){const node=makeChart(it);cache.set(id,node);c.appendChild(node);}
+ cache.get(id).classList.add('visible');activeId=id;
+ const url=it.kind==='fred'?'https://fred.stlouisfed.org/series/'+encodeURIComponent(it.symbol):it.url;
+ $('original').href=url;$('directChart').href=url;
+ $('directNote').textContent=it.kind==='fred'?'FRED 원본 사이트에서 기간을 1M으로 선택하실 수 있습니다.':it.kind==='tv'?'TradingView 원본 사이트에서 1M을 선택하실 수 있습니다.':'원본 자료에서 발표 기준일을 확인해 주세요.';
+ $('chartNote').textContent=it.kind==='fred'?'FRED 그래프, 최근 1개월 · 최종 관측일과 발표일은 다를 수 있습니다.':it.kind==='tv'?'TradingView 1개월 차트 · 첫 방문 시 외부 서비스 연결 시간이 필요합니다.':'검증되지 않은 그래프는 제공하지 않습니다.';
+}
+$('reload').addEventListener('click',()=>{
+ const old=cache.get(selected);if(old){old.remove();cache.delete(selected);activeId=null;}show(selected);
+});
+show('vix');
+// 빠른 전환을 위해 FRED 그래프만 백그라운드에서 소량 미리 불러옵니다.
+// TradingView 다중 위젯 사전 로딩은 네트워크와 CPU를 과도하게 사용하므로 제외합니다.
+function prefetchFred(){items.filter(x=>x.kind==='fred'&&x.id!=='vix').forEach((it,idx)=>{
+  const run=()=>{const pre=new Image();pre.src=fredSrc(it);};
+  if('requestIdleCallback'in window)requestIdleCallback(run,{timeout:3000+idx*700});else setTimeout(run,1300+idx*600);
+});}
+window.addEventListener('load',prefetchFred,{once:true});
+</script>
+</body></html>
