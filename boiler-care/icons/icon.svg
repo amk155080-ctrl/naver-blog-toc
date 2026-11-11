@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+ <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#102940"/><stop offset="1" stop-color="#154d54"/></linearGradient>
+ <linearGradient id="heat" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#00b996"/><stop offset="1" stop-color="#84f2d2"/></linearGradient>
+</defs>
+<rect width="512" height="512" rx="120" fill="url(#bg)"/>
+<!-- soft accent -->
+<circle cx="401" cy="108" r="125" fill="#46e9c4" opacity=".07"/>
+<!-- boiler housing -->
+<rect x="117" y="79" width="278" height="358" rx="50" fill="#f7fffc"/>
+<rect x="139" y="104" width="234" height="102" rx="28" fill="#d4f3e9"/>
+<rect x="161" y="124" width="133" height="62" rx="16" fill="#1b4452"/>
+<rect x="315" y="140" width="37" height="37" rx="18" fill="#00ae91"/>
+<circle cx="333" cy="158" r="7" fill="#effefa"/>
+<!-- flame -->
+<path d="M254 224 C300 271 301 305 276 341 C298 332 312 319 318 299 C346 369 308 402 257 406 C195 406 177 369 194 324 C202 304 218 282 254 224Z" fill="url(#heat)"/>
+<path d="M257 301 C269 327 272 341 260 356 C270 355 278 348 284 339 C298 372 278 389 254 389 C229 389 217 370 227 351 C234 338 246 320 257 301Z" fill="#fff" opacity=".94"/>
+</svg>
