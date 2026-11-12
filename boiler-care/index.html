@@ -12,11 +12,22 @@
 @media (max-width:700px){.wrap{padding:0 14px}.topbar{padding-top:15px}.hero{grid-template-columns:1fr 75px;gap:8px;padding:25px 0 44px}.heroicon{width:72px;height:72px;border-radius:22px}.heroicon svg{width:44px;height:44px}.hero h1{font-size:29px}.hero p{font-size:13px;margin-top:11px}.panel{padding:17px;border-radius:16px}.formgrid,.officialgrid,.helpgrid,.placegrid{grid-template-columns:1fr}.formgrid{gap:14px}.searchlinks{grid-template-columns:1fr}.quotegrid{grid-template-columns:1fr 1fr}.quotegrid .f:last-child{grid-column:1/-1}.topnote{display:none}.section-h h2{font-size:18px}.offbtns .btn{font-size:13px}.brand{font-size:17px}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+.manualadd{width:100%;text-align:left;min-height:32px;font-size:12px;white-space:normal;padding:6px 2px}
 /* 전국 지역 선택: PC/모바일 같은 네 단계 */
 .regiongrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0 8px}.regiongrid .f{min-width:0}.regiongrid select{width:100%;padding:12px 30px 12px 12px;text-overflow:ellipsis;min-width:0}.regiongrid select:disabled{background:#f3f6f7;color:#92a0a7;cursor:not-allowed}.introdesc{margin-bottom:4px}.region-under{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-bottom:17px}.regioncrumb{font-size:12px;color:#0c7669;background:#eaf9f5;padding:7px 10px;border-radius:8px;font-weight:700}.textbtn{border:0;background:transparent;color:#178272;text-decoration:underline;font-size:12px;padding:7px}.brandrow{max-width:440px}.muted-light{font-size:12px;font-weight:400;color:#8898a1}.localhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:22px 0 10px}.localhead h3{margin:0;font-size:16px;letter-spacing:-.4px}.countpill{border:1px solid #cee6df;background:#f3faf7;color:#16816d;padding:4px 10px;font-size:12px;font-weight:800;border-radius:50px}.filterbar{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:11px}.filterchip{border:1px solid #d4e3e9;background:#fff;color:#5a7180;border-radius:22px;font-size:12px;font-weight:750;padding:8px 11px}.filterchip.active{background:#102940;color:#fff;border-color:#102940}.registered-area .placegrid{margin-top:0}.shopbadge{display:inline-block;font-size:11px;font-weight:800;color:#008775;background:#e7f8f2;border-radius:5px;padding:3px 7px;margin-bottom:7px}.shopbadge.brandbadge{background:#eef3fb;color:#476c91}.shopbadge.mybadge{background:#fff2de;color:#a15d27}.register-note{margin-top:9px}.savebox{margin-top:14px;border:1px solid #cfe4e8;border-radius:12px;padding:14px;background:#fafcfd}.savebox summary{font-weight:800;font-size:14px;cursor:pointer}.savebox .minor{font-weight:400;font-size:12px;color:#758b99}.savegrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:13px 0}.savegrid .wide{grid-column:1/-1}.mapquick{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.mapquick a{border:1px solid #d8e6e8;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;color:#426476;background:#f9fcfc}.mapquick a:hover{border-color:#04a78a}.smallmeta{font-size:12px;color:#64808a;margin:6px 0 0}.nodata-note{border:1px dashed #d3e2e7;background:#f9fbfc;border-radius:10px;padding:14px;font-size:13px;color:#5c7381}.place .pactions .btn{font-size:12px;min-height:36px}.place .pactions .btn-danger{background:#fff3f0;border:1px solid #f4c6bb;color:#a34a35}.place{position:relative}.source-note{display:block;font-size:11px;color:#7b909b;margin-top:7px}
 @media (max-width:750px){.regiongrid{grid-template-columns:repeat(2,minmax(0,1fr))}.regiongrid .f select{font-size:14px}.region-under{margin-bottom:14px}}
 @media (max-width:430px){.regiongrid{gap:8px}.regiongrid select{padding:11px 26px 11px 10px;font-size:13px}.savegrid{grid-template-columns:1fr}.savegrid .wide{grid-column:auto}.regioncrumb{font-size:11px}}
 
+
+/* 우동보 v2.1: 전국 동/인근 수리점 가시성 강화 */
+.nearby-toggle{display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:#274659;font-size:13px;font-weight:750;margin:10px 0 13px;cursor:pointer}.nearby-toggle input{width:18px;height:18px;accent-color:#009e85}.nearby-toggle small{color:#637b89;font-weight:450}.group-title{margin:16px 0 9px;font-size:15px;color:#173c4d}.group-desc{font-size:12px;color:#637b89;margin:-3px 0 11px}.search-state{border:1px solid #cce2e4;background:#f4faf9;border-radius:12px;padding:11px 13px;margin:12px 0;color:#416577;font-size:13px}.shopbadge.livebadge{background:#e8f7f4;color:#117a68}.shopbadge.nearbadge{background:#f4f1e6;color:#886a29}.live-note{font-size:12px;color:#697f8a;margin-top:8px}.placegrid.live-place-grid{margin-top:11px}
+.searchoverview{margin:14px 0 2px;padding:14px 15px;background:#eaf7f3;color:#135f52;border:1px solid #c6e6dd;border-radius:12px;font-size:14px;font-weight:800;line-height:1.65}
+.searchoverview[data-state="error"]{background:#fff0eb;color:#95452a;border-color:#f2cdbd}
+.searchoverview[data-state="disconnected"]{background:#fff8ec;color:#8c6227;border-color:#f2dfba}
+
+.searchdiagnostics{font-size:12px;line-height:1.7;background:#f6f9fa;color:#4c6978;border:1px solid #e0e9ed;border-radius:9px;padding:10px 12px;margin:-3px 0 12px;overflow-wrap:anywhere}
+.searchdiagnostics b{color:#173c4d}
+.searchdiagnostics[data-error="true"]{background:#fff6f0;border-color:#efcbb9;color:#9b482f}
 </style>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
@@ -42,6 +53,10 @@
 .installmodal .install-note{background:#f1f9f7;border-radius:10px;padding:12px;font-size:12px;margin-top:12px}
 @media(max-width:600px){.installstrip{align-items:flex-start}.installstrip .btn{min-width:104px;padding:10px 12px;font-size:12px}.installstrip strong{font-size:13px}.installstrip small{font-size:11px}}
 @media(display-mode:standalone){.installstrip{display:none}}
+
+.searchdiagnostics{font-size:12px;line-height:1.7;background:#f6f9fa;color:#4c6978;border:1px solid #e0e9ed;border-radius:9px;padding:10px 12px;margin:-3px 0 12px;overflow-wrap:anywhere}
+.searchdiagnostics b{color:#173c4d}
+.searchdiagnostics[data-error="true"]{background:#fff6f0;border-color:#efcbb9;color:#9b482f}
 </style>
 </head>
 <body>
@@ -63,23 +78,30 @@
   <div class="f"><label for="sido">① 시·도</label><select id="sido" aria-label="시도 선택"><option value="">시·도 선택</option></select></div>
   <div class="f"><label for="city">② 시·군</label><select id="city" aria-label="시군 선택" disabled><option value="">해당 없거나 자동 선택</option></select></div>
   <div class="f"><label for="gu">③ 구</label><select id="gu" aria-label="구 선택" disabled><option value="">구 선택</option></select></div>
-  <div class="f"><label for="dong">④ 읍·면·동</label><select id="dong" aria-label="동 선택" disabled><option value="">동 선택 (구 전체 가능)</option></select></div>
+  <div class="f"><label for="dong">④ 읍·면·동</label><select id="dong" aria-label="읍면동 선택" disabled><option value="">읍·면·동 선택</option></select><input id="dongManual" type="text" maxlength="25" autocomplete="off" placeholder="목록에 없으면 읍·면·동 입력" aria-label="목록에 없는 읍면동 직접 입력" style="margin-top:6px;min-height:40px;font-size:13px"><button type="button" id="addDong" class="textbtn manualadd">＋ 입력한 읍·면·동을 내 목록에 저장</button></div>
  </div>
  <div class="region-under"><span class="regioncrumb" id="regionCrumb">지역을 선택해 주세요</span><button class="textbtn" id="exampleArea" type="button">면목동 선택 예시 ↗</button></div>
  <div class="f brandrow"><label for="brand">보일러 브랜드</label><select id="brand"><option value="">전체 브랜드 · 개인 수리점 포함</option><option value="경동나비엔">경동나비엔</option><option value="귀뚜라미">귀뚜라미</option><option value="린나이">린나이</option><option value="대성쎌틱">대성쎌틱</option><option value="롯데보일러">롯데보일러</option><option value="기타">기타/모르겠어요</option></select></div>
  <div class="formrow"><span class="fieldlabel">어떤 증상이 있으신가요? <span class="muted-light">(선택)</span></span><div class="chips" id="symptoms"><button type="button" class="chip on" data-symptom="">증상 전체</button><button type="button" class="chip" data-symptom="온수 안 나옴">온수 안 나옴</button><button type="button" class="chip" data-symptom="난방 안 됨">난방 안 됨</button><button type="button" class="chip" data-symptom="누수">누수</button><button type="button" class="chip" data-symptom="에러코드">에러코드</button><button type="button" class="chip" data-symptom="소음">소음</button></div></div>
  <div class="actions"><button class="btn btn-main" id="search" type="button">🔎 선택한 지역에서 수리점 찾기</button><button class="btn btn-out" id="geo" type="button">⌖ 현재 위치로 찾기</button></div>
- <div class="notice"><span>ⓘ</span><span>읍·면·동까지 선택하면 <strong>해당 동 소재 업체만</strong> 앱 목록에 우선 표시합니다. 구까지만 선택하면 구 전체 업체를 표시합니다. 현재 위치 검색은 HTTPS·위치 권한이 필요합니다.</span></div>
+ <div class="notice"><span>ⓘ</span><span>읍·면·동을 선택하면 <strong>같은 동 소재 업체를 우선</strong> 보여주고, 설정한 경우 인근 지역 업체를 별도로 표시합니다. 인근 업체의 출장 가능 여부는 반드시 통화로 확인하세요. 현재 위치 검색은 HTTPS·위치 권한이 필요합니다.</span></div>
  <div class="status" role="status"><span class="dot"></span><span id="modeStatus">지역 목록 준비 중 · 지도 연결 없이도 등록 업체 목록 확인 가능</span></div>
 </section>
 <div class="mainstack">
 <section class="panel" id="results">
  <div class="resulthead"><h2><span class="number">02</span>수리점 검색 결과</h2><span class="modepill" id="modeLabel">동네별 분리 검색</span></div>
  <p class="desc" id="queryLine">지역을 선택하면 동네별 수리점과 지도 검색 링크를 확인할 수 있습니다.</p>
- <div class="localhead"><h3>🏠 우리 동네 등록 업체</h3><span class="countpill" id="registeredCount">지역 선택 전</span></div>
+ <div class="searchoverview" id="searchOverview" aria-live="polite">검색 버튼을 누르면 지도 업체와 직접 등록 업체의 결과를 구분해 보여드립니다.</div>
+ <div class="searchdiagnostics" id="searchDiagnostics" aria-live="polite">연결 및 검색 진행 상태를 확인하는 중입니다. (JavaScript 키는 화면에 표시되지 않습니다.)</div>
+ <div class="localhead" style="margin-top:17px"><h3>🔎 ① 지도 API 실시간 검색 업체</h3><span class="modepill" id="liveCount">지도 API 연결 확인 중</span></div>
+ <p class="fine">이 목록은 카카오맵 API에서 검색한 결과입니다. 아래 ‘사전 등록 업체’의 건수와 별개입니다.</p>
+ <label class="nearby-toggle"><input type="checkbox" id="includeNearby" checked> 같은 동 검색 후 주변 지역 업체도 별도로 보기 <small>(출장 가능 여부는 직접 확인)</small></label>
+ <div class="apiresult" id="apiresult" aria-live="polite"><div class="empty">지도 API 연결 후 선택한 지역을 검색하면 이곳에 업체가 표시됩니다.</div></div>
+ <div class="localhead" style="margin-top:27px"><h3>🏠 ② 앱에 사전 등록한 업체</h3><span class="countpill" id="registeredCount">지역 선택 전</span></div>
+ <p class="fine">이 목록은 앱 자체 등록 자료입니다. 0곳·1곳 표시가 해당 지역 전체 업체 수를 의미하지 않습니다. 실제 검색 건수는 위 지도 API 조회에서 확인하세요.</p>
  <div class="filterbar" role="group" aria-label="업체 유형 필터"><button type="button" data-filter="all" class="filterchip active">전체 업체</button><button type="button" data-filter="indie" class="filterchip">개인·동네 수리점</button><button type="button" data-filter="brand" class="filterchip">브랜드 판매·서비스점</button></div>
- <div id="registered" class="registered-area"><div class="empty">지역을 선택하고 검색하면 주소가 확인된 동네 업체를 표시합니다.</div></div>
- <p class="fine register-note">지역별 최초 수집 목록은 서울 중랑구 일부 업체이며, <strong>지도 등록 정보 기반·영업 여부 미확인</strong> 자료입니다. 서비스 제공·전화번호·출장 가능 여부는 연락하여 확인하세요. 다른 지역은 아래 지도 검색이나 API 검색을 이용할 수 있습니다.</p>
+ <div id="registered" class="registered-area"><div class="empty">지역을 선택하고 검색하면 주소가 확인된 사전 등록 업체를 표시합니다.</div></div>
+ <p class="fine register-note">앱에 사전 등록된 업체는 서울 중랑구 일부에서 시작했으며, <strong>지도 등록 정보 기반·영업 여부 미확인</strong> 자료입니다. 서비스 제공·전화번호·출장 가능 여부는 연락하여 확인하세요. 다른 지역의 수리점은 위 실시간 검색 또는 아래 지도 링크에서 확인해 주세요.</p>
  <details class="savebox" id="saveDetails"><summary>＋ 개인 수리점 직접 등록하기 <span class="minor">내 기기에만 저장</span></summary><div class="savegrid">
   <div class="f"><label for="regName">업체명</label><input id="regName" placeholder="예: 우리동네보일러" maxlength="80"></div>
   <div class="f"><label for="regPhone">전화번호 (선택)</label><input id="regPhone" placeholder="02-000-0000" maxlength="24" inputmode="tel"></div>
@@ -90,9 +112,8 @@
  <div class="searchlinks"><a class="mapchoice" href="https://map.kakao.com" id="kakaoLink" rel="noopener noreferrer" target="_blank"><span><strong>카카오맵에서 찾기</strong><small>동네 개인 수리·설비업체 검색 · 위치 확인</small></span><span class="arrow">↗</span></a><a class="mapchoice" href="https://map.naver.com" id="naverLink" rel="noopener noreferrer" target="_blank"><span><strong>네이버지도에서 찾기</strong><small>업체 상세 정보 · 전화 · 리뷰 · 길찾기</small></span><span class="arrow">↗</span></a></div>
  <div class="mapquick" id="mapQuick"></div>
  <div class="howto"><span class="step">1. 동네 선택</span><span class="step">2. 실제 소재지 확인</span><span class="step">3. 출장·비용 문의</span><span class="step">4. 일정 예약</span></div>
- <div class="localhead"><h3>🔎 지도 API로 신규 업체 가져오기</h3><span class="fine">선택 연결</span></div>
- <div class="apiresult" id="apiresult"><div class="empty">카카오 지도 API를 연결하면 현재 선택한 지역의 신규 검색 결과를 앱 안에서 불러올 수 있습니다. API 없이도 위 동네 등록 목록과 지도 링크를 사용할 수 있습니다.</div></div>
- <details class="apihelp" id="apiDetails"><summary>⚙️ 앱 안에서 실시간 지도 수리점 목록 보기 (선택 설정)</summary><p><a href="https://developers.kakao.com/" rel="noopener noreferrer" target="_blank">카카오 개발자 사이트</a>에서 <strong>JavaScript 키</strong>를 발급받고 이 웹앱을 게시한 도메인을 등록해 주세요. HTML 파일을 그냥 여는 경우 지도 API 연결이 지원되지 않을 수 있습니다. <strong>REST API 비밀키를 입력하지 마세요.</strong></p><label class="f" for="apiKey" style="font-size:12px;font-weight:700">카카오 JavaScript 키<input id="apiKey" type="text" autocomplete="off" spellcheck="false" maxlength="120" placeholder="JavaScript 키 입력"></label><div class="info-row"><button class="btn btn-dark btn-sm" type="button" id="connect">지도 API 연결</button><a class="fine" href="https://developers.kakao.com/" target="_blank" rel="noopener noreferrer">카카오 개발자 사이트 ↗</a></div><p id="apiMessage" aria-live="polite">연결한 뒤 위에서 지역을 검색하면 API로 발견한 실제 업체가 표시됩니다. 브랜드의 공식 인증 여부는 따로 확인해야 합니다.</p></details>
+ 
+ <details class="apihelp" id="apiDetails"><summary>⚙️ 운영자용 전국 실시간 업체 검색 연결 (최초 1회 설정)</summary><p><a href="https://developers.kakao.com/" rel="noopener noreferrer" target="_blank">카카오 개발자 사이트</a>에서 <strong>JavaScript 키</strong>를 발급받고 이 웹앱을 게시한 도메인을 등록해 주세요. HTML 파일을 그냥 여는 경우 지도 API 연결이 지원되지 않을 수 있습니다. <strong>REST API 비밀키를 입력하지 마세요.</strong></p><label class="f" for="apiKey" style="font-size:12px;font-weight:700">카카오 JavaScript 키<input id="apiKey" type="text" autocomplete="off" spellcheck="false" maxlength="120" placeholder="JavaScript 키 입력"></label><div class="info-row"><button class="btn btn-dark btn-sm" type="button" id="connect">지도 API 연결</button><a class="fine" href="https://developers.kakao.com/" target="_blank" rel="noopener noreferrer">카카오 개발자 사이트 ↗</a></div><p id="apiMessage" aria-live="polite">운영자가 index.html의 DEFAULT_KAKAO_JS_KEY에 JavaScript 키를 입력하고 배포하면 모든 방문자가 별도 입력 없이 앱에서 검색할 수 있습니다. 아래 직접 입력은 이 기기에서만 적용됩니다. 브랜드 공식 인증 여부는 별도 확인이 필요합니다.</p></details>
 </section>
 <section class="panel" id="official">
  <div class="section-h"><h2><span class="number">03</span>제조사 공식 A/S</h2><span class="sub">전화 연결 · 공식 사이트</span></div>
@@ -117,7 +138,7 @@
  <div class="helpgrid"><div class="warning"><strong>⚠ 가스 냄새가 난다면</strong>불꽃이나 전기 스위치를 조작하지 마세요. 가능하고 안전한 경우 가스 공급을 차단하고, 창문을 열어 환기한 후 안전한 곳으로 대피하여 <strong style="display:inline;color:#a24b23;margin:0">119 또는 도시가스 긴급센터</strong>에 연락하세요. 직접 분해·수리하지 마세요.</div><div class="checklist"><label><input type="checkbox">보일러 모델명과 설치 연도를 확인했습니다.</label><label><input type="checkbox">에러코드 또는 고장 화면을 사진으로 남겼습니다.</label><label><input type="checkbox">출장비·점검비·부품비를 구분해서 문의했습니다.</label><label><input type="checkbox">공식 서비스 여부 및 수리 보증을 확인했습니다.</label><label><input type="checkbox">수리 전 최종 금액 설명을 요청했습니다.</label></div></div>
 </section>
 </div>
-<footer>우리동네보일러(우동보) · 생활 편의용 수리점 검색 도구<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
+<footer>우리동네보일러(우동보) v2.4 · 생활 편의용 수리점 검색 도구<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
 </main>
 <div class="toast" id="toast" role="status"></div>
 <dialog id="installHelp" class="installmodal" aria-label="우리동네보일러 앱 설치 안내">
@@ -136,7 +157,13 @@ const LS='boilerfinder_v2_';
 const get=(key,fallback='')=>{try{return localStorage.getItem(LS+key)??fallback}catch(e){return fallback}};
 const put=(key,val)=>{try{localStorage.setItem(LS+key,val)}catch(e){}};
 const enc=encodeURIComponent;
-const baseURL='https://raw.githubusercontent.com/junjun3180/JSON-South-Korea-Administrative-District-JSON-Data/main/regions.json';
+// 운영자는 아래 따옴표 안에 카카오맵 JavaScript 키를 한 번만 넣어 배포합니다.
+// REST API 키/관리자 키는 절대 넣지 마세요. 도메인 제한을 반드시 설정하세요.
+const DEFAULT_KAKAO_JS_KEY='';
+const regionURLs=[
+  'https://raw.githubusercontent.com/junjun3180/JSON-South-Korea-Administrative-District-JSON-Data/main/regions.json',
+  'https://cdn.jsdelivr.net/gh/junjun3180/JSON-South-Korea-Administrative-District-JSON-Data@main/regions.json'
+];
 const brands=[
 {name:'경동나비엔',phone:'1588-1144',site:'https://www.kdnavien.co.kr/ko/service',note:'공식 고객상담 · 운영시간 확인'},
 {name:'귀뚜라미',phone:'1588-9000',site:'https://krb.co.kr/search_list',note:'공식 서비스센터 검색 · 운영시간 확인'},
@@ -179,10 +206,25 @@ const fallbackDistricts={
 '경상남도':'창원시 의창구,창원시 성산구,창원시 마산합포구,창원시 마산회원구,창원시 진해구,김해시,진주시,양산시,거제시,통영시,사천시,밀양시,창녕군,함안군,의령군,고성군,남해군,하동군,산청군,함양군,거창군,합천군',
 '제주특별자치도':'제주시,서귀포시'
 };
-const fallback=Object.entries(fallbackDistricts).map(([adm_nm,txt])=>({adm_nm,districts:(txt?txt.split(','):[adm_nm]).map(n=>({adm_nm:n,towns:n==='중랑구'?[{adm_nm:'면목동'},{adm_nm:'상봉동'},{adm_nm:'망우동'},{adm_nm:'중화동'},{adm_nm:'묵동'},{adm_nm:'신내동'}]:[]}))}));
+// 외부 행정구역 자료가 차단되어도 최소 지역 선택이 가능하도록 기본값을 내장합니다.
+// 청송군 8읍면: 경상북도 공식 행정구역 안내(https://www.gb.go.kr/, 2026-11 조회).
+// 이 목록은 전국 전체를 포함하지 않습니다. 없는 곳은 아래 직접 입력 + 내 목록 저장을 사용합니다.
+const builtInTowns={
+ '서울특별시|중랑구':'면목동,상봉동,망우동,중화동,묵동,신내동',
+ '서울특별시|은평구':'녹번동,불광동,갈현동,구산동,대조동,응암동,역촌동,신사동,증산동,수색동,진관동',
+ '경상북도|청송군':'청송읍,주왕산면,부남면,현동면,현서면,안덕면,파천면,진보면'
+};
+const fallback=Object.entries(fallbackDistricts).map(([adm_nm,txt])=>({adm_nm,districts:(txt?txt.split(','):[adm_nm]).map(n=>({adm_nm:n,towns:(builtInTowns[adm_nm+'|'+n]||'').split(',').filter(Boolean).map(x=>({adm_nm:x}))}))}));
 let regions=fallback;
 let dataState='fallback';
+let customTowns={};
+try{const c=JSON.parse(get('custom_towns','{}'));if(c&&typeof c==='object'&&!Array.isArray(c))customTowns=c}catch(e){}
+const areaKey=()=>[$('sido').value,$('city').value,$('gu').value].join('|');
+// 성공적으로 받아온 전국 목록은 브라우저에 보관하여 다음 방문에도 재사용합니다.
+try{const c=JSON.parse(get('region_cache','null'));if(Array.isArray(c)&&c.length===17&&c.every(r=>r&&Array.isArray(r.districts))){regions=c;dataState='cached'}}catch(e){}
 let filterKind='all',symptom='',currentPosition=null,places=null,sdkReady=false,connecting=false;
+let liveResults=[],liveStatus='idle',searchSeq=0,liveScopeName='',lastFilterScope='';
+let searchClicks=0, searchStage='검색 전', lastErrorText='', pendingSearch=false;
 let savedShops=[];
 try{const x=JSON.parse(get('saved_shops','[]'));if(Array.isArray(x))savedShops=x.filter(s=>s&&s.name&&s.sido)}catch(e){}
 const uniq=arr=>[...new Set(arr.filter(v=>v!==null&&v!==undefined))];
@@ -192,7 +234,7 @@ function useOptions(el,options,label,disabled){resetSelect(el,label,disabled);fo
 function selectedProvince(){return regions.find(v=>v.adm_nm===$('sido').value)}
 function splitDistrict(s){const p=s.trim().split(/\s+/);if(p.length>=2&&p.at(-1).endsWith('구')&&p[0].endsWith('시'))return {city:p.slice(0,-1).join(' '),gu:p.at(-1)};if(s.endsWith('구'))return{city:'',gu:s};if(s.endsWith('군')||s.endsWith('시'))return{city:s,gu:''};return{city:'',gu:''}}
 function districtChoices(){const province=selectedProvince();return province?province.districts.map(d=>({raw:d,parts:splitDistrict(d.adm_nm)})):[]}
-function currentScope(){const sido=$('sido').value,city=$('city').value,gu=$('gu').value,dong=$('dong').value;return{sido,city,gu,dong,full:[sido,city,gu,dong].filter(Boolean).join(' ')}}
+function currentScope(){const sido=$('sido').value,city=$('city').value,gu=$('gu').value;const dong=($('dongManual')?.value||'').trim()||($('dong').value==='__manual__'?'':$('dong').value);return{sido,city,gu,dong,full:[sido,city,gu,dong].filter(Boolean).join(' ')}}
 function getStoredSelection(){try{return JSON.parse(get('selection','{}'))}catch(e){return{}}}
 function saveSelection(){put('selection',JSON.stringify(currentScope()));}
 function addSidos(){const previous=$('sido').value;useOptions($('sido'),regions.map(r=>r.adm_nm),'시·도 선택',false);if(previous&&regions.some(v=>v.adm_nm===previous))$('sido').value=previous}
@@ -200,7 +242,7 @@ function rebuildCity(pref=''){
 const rows=districtChoices();const cities=uniq(rows.map(r=>r.parts.city));
 if(cities.length===1&&cities[0]===''){resetSelect($('city'),'해당 없음 (구 선택)',true)}
 else{useOptions($('city'),cities.filter(Boolean),'시·군 선택 (생략 가능)',false);if(pref&&cities.includes(pref))$('city').value=pref}
-rebuildGu();}
+$('dongManual').value='';rebuildGu();}
 function rebuildGu(pref=''){
 const rows=districtChoices();const city=$('city').value;
 let group=rows.filter(r=>r.parts.city===city);
@@ -208,21 +250,38 @@ if($('city').disabled)group=rows.filter(r=>!r.parts.city);
 const gus=uniq(group.map(r=>r.parts.gu).filter(Boolean));
 if(gus.length){useOptions($('gu'),gus,'구 선택 (시 전체도 검색 가능)',false);if(pref&&gus.includes(pref))$('gu').value=pref}
 else resetSelect($('gu'),'해당 없음',true);
-rebuildDong();}
+$('dongManual').value='';rebuildDong();}
 function rebuildDong(pref=''){
 const choices=districtChoices();const c=$('city').value,g=$('gu').value;
 let rows=choices.filter(r=>r.parts.city===c&&r.parts.gu===g);
 if($('city').disabled)rows=choices.filter(r=>r.parts.city===''&&r.parts.gu===g);
-const towns=uniq(rows.flatMap(r=>(r.raw.towns||[]).map(t=>t.adm_nm)).filter(Boolean));
-if(towns.length){useOptions($('dong'),towns,'읍·면·동 전체 (선택)',false);if(pref&&towns.includes(pref))$('dong').value=pref}
-else resetSelect($('dong'),dataState==='fallback'?'지역 목록 갱신 필요':'동 선택 (없음)',true);
+const base=uniq(rows.flatMap(r=>(r.raw.towns||[]).map(t=>t.adm_nm)).filter(Boolean));
+const custom=Array.isArray(customTowns[areaKey()])?customTowns[areaKey()].filter(v=>typeof v==='string'):[];
+const towns=uniq([...base,...custom]);
+const selected=$('sido').value&&($('city').value||$('gu').value||$('sido').value==='세종특별자치시');
+if(!selected){resetSelect($('dong'),'먼저 시·군 또는 구 선택',true)}
+else{
+ useOptions($('dong'),towns,towns.length?'읍·면·동 전체 (선택)':'목록 없음 · 아래 직접 입력',false);
+ $('dong').add(new Option('✎ 목록에 없는 읍·면·동 직접 입력','__manual__'));
+ if(pref&&towns.includes(pref)){$('dong').value=pref;$('dongManual').value=''}
+ else if(pref){$('dong').value='__manual__';$('dongManual').value=pref}
+}
 refreshUI();}
+function saveManualTown(){
+ const s=currentScope(),name=$('dongManual').value.trim();
+ if(!s.sido||(!s.city&&!s.gu&&s.sido!=='세종특별자치시')){notify('시·군 또는 구를 먼저 선택해 주세요.');return}
+ if(!name){$('dongManual').focus();notify('읍·면·동 이름을 먼저 입력해 주세요.');return}
+ if(!/^[가-힣0-9\s-]{1,25}$/.test(name)){notify('한글 읍·면·동 이름을 확인해 주세요.');return}
+ const key=areaKey(),values=Array.isArray(customTowns[key])?customTowns[key]:[];
+ customTowns[key]=uniq([...values,name]);put('custom_towns',JSON.stringify(customTowns));
+ rebuildDong(name);saveSelection();notify(name+'을(를) 내 지역 목록에 저장했습니다.');
+}
 function applyRegion(r,{show=false}={}){
 if(!r?.sido||!regions.some(v=>v.adm_nm===r.sido))return;
 $('sido').value=r.sido;rebuildCity(r.city||'');
 if(r.city&&Array.from($('city').options).some(o=>o.value===r.city)){$('city').value=r.city;rebuildGu(r.gu||'')}
 if(r.gu&&Array.from($('gu').options).some(o=>o.value===r.gu)){$('gu').value=r.gu;rebuildDong(r.dong||'')}
-if(r.dong&&Array.from($('dong').options).some(o=>o.value===r.dong)){$('dong').value=r.dong;refreshUI()}
+if(r.dong){const known=Array.from($('dong').options).some(o=>o.value===r.dong);if(known){$('dong').value=r.dong;$('dongManual').value=''}else{$('dong').value='__manual__';$('dongManual').value=r.dong}refreshUI()}
 if(show)doSearch(false);
 }
 function updateAreaLabel(){const s=currentScope();$('regionCrumb').textContent=s.full||'지역을 선택해 주세요';}
@@ -235,7 +294,11 @@ $('naverLink').href=hrefNaver(q.query);const quick=$('mapQuick');quick.replaceCh
 if(!q.region)return;
 const kws=[{label:'🔧 일반·개인 수리점 검색',key:'보일러 수리'},{label:'🛠️ 설비·난방 업체 검색',key:'설비 난방 보일러'},{label:'📍 네이버에서 지역 업체 검색',key:'보일러 수리'}];
 for(const [i,k] of kws.entries()){const a=document.createElement('a');a.textContent=k.label;const v=`${q.sido?q.full:''} ${k.key}`.trim();a.href=i===2?hrefNaver(v):hrefKakao(v);a.target='_blank';a.rel='noopener noreferrer';quick.append(a)}}
-function refreshUI(){updateAreaLabel();links();saveSelection();const q=getQuery();$('queryLine').textContent=q.region?`선택 지역: ${q.region} · ${q.brand||'전체 브랜드'}${symptom?' · '+symptom:''} | 동을 지정하면 해당 동 소재 업체만 표시됩니다.`:'시·도부터 차례로 선택해 주세요.';renderRegistered();}
+function refreshUI(resetSearch=true){
+ const scopeKey=JSON.stringify([currentScope(),$('brand').value,currentPosition]);
+ const scopeChanged=lastFilterScope!==scopeKey;lastFilterScope=scopeKey;
+ if(scopeChanged&&resetSearch){searchSeq++;liveResults=[];liveStatus='awaiting';searchStage='지역·브랜드 변경 후 검색 대기';renderApiPlaces()}
+ updateAreaLabel();links();saveSelection();const q=getQuery();$('queryLine').textContent=q.region?`선택 지역: ${q.region} · ${q.brand||'전체 브랜드'}${symptom?' · '+symptom:''} | 동 소재 업체를 우선 표시하고 인근 업체는 별도로 표시합니다.`:'시·도부터 차례로 선택해 주세요.';renderRegistered();}
 function emptyIn(container,msg){container.replaceChildren();const d=document.createElement('div');d.className='empty';d.textContent=msg;container.append(d)}
 function btnLink(text,url,main){const a=document.createElement('a');a.className='btn '+(main?'btn-main':'btn-out')+' btn-sm';a.textContent=text;a.href=url;a.rel='noopener noreferrer';if(!url.startsWith('tel:'))a.target='_blank';return a}
 function createShopCard(shop){const card=document.createElement('article');card.className='place';const b=document.createElement('span');b.className='shopbadge '+(shop.own?'mybadge':shop.kind==='brand'?'brandbadge':'');b.textContent=shop.own?'내가 등록한 수리점':shop.kind==='brand'?'지역 브랜드 판매·서비스점':'개인·동네 설비/수리점';const name=document.createElement('div');name.className='ptitle';name.textContent=shop.name;const addr=document.createElement('div');addr.className='paddr';addr.textContent=shop.addr||[shop.sido,shop.city,shop.gu,shop.dong].filter(Boolean).join(' ');const meta=document.createElement('div');meta.className='pmeta';meta.textContent=(shop.phone||'전화번호 미확인')+' · '+(shop.note||'출장 가능 여부 확인');const source=document.createElement('small');source.className='source-note';source.textContent=shop.own?'본인 입력·이 기기에 저장':'공개 지도 등록 정보(2026.11.11 확인) · 영업상태 미확인';const act=document.createElement('div');act.className='pactions';if(shop.phone){act.append(btnLink('☎ 전화', 'tel:'+shop.phone.replace(/[^0-9+]/g,''),true))}
@@ -244,42 +307,247 @@ function matchShop(shop,scope){if(!scope.sido||shop.sido!==scope.sido)return fal
 if(filterKind==='indie'&&shop.kind!=='indie')return false;if(filterKind==='brand'&&shop.kind!=='brand')return false;
 const brand=$('brand').value;if(brand&&brand!=='기타'&&shop.kind==='brand'&&!shop.name.includes(brand.replace('경동나비엔','경동').replace('대성쎌틱','대성')))return false;
 return true}
-function renderRegistered(){const scope=currentScope();const box=$('registered');if(!scope.sido||(!scope.city&&!scope.gu&&scope.sido!=='세종특별자치시')){emptyIn(box,'먼저 시·도와 시·군 또는 구를 선택해 주세요.');$('registeredCount').textContent='지역 선택 전';return}
-const out=[...savedShops.map(s=>({...s,own:true})),...initialShops].filter(s=>matchShop(s,scope));$('registeredCount').textContent=out.length+'곳 표시';box.replaceChildren();if(!out.length){emptyIn(box,scope.dong?`${scope.dong} 소재 업체는 현재 앱의 수집 목록에서 확인되지 않았습니다. 상단 지역은 유지한 채 아래 지도를 눌러 더 많은 개인 수리점을 찾아보세요.`:`현재 앱에 등록된 ${scope.full} 업체 목록이 없습니다. 아래 지도 검색 또는 API 검색으로 새 업체를 찾을 수 있습니다.`);return}
+function renderRegistered(){const scope=currentScope();const box=$('registered');if(!scope.sido||(!scope.city&&!scope.gu&&scope.sido!=='세종특별자치시')){emptyIn(box,'먼저 시·도와 시·군 또는 구를 선택해 주세요.');$('registeredCount').textContent='지역 선택 전';updateSearchOverview();return}
+const out=[...savedShops.map(s=>({...s,own:true})),...initialShops].filter(s=>matchShop(s,scope));$('registeredCount').textContent=out.length+'곳 (사전 등록)';box.replaceChildren();updateSearchOverview();if(!out.length){emptyIn(box,scope.dong?`${scope.dong} 소재 업체는 현재 앱의 수집 목록에서 확인되지 않았습니다. 상단 지역은 유지한 채 아래 지도를 눌러 더 많은 개인 수리점을 찾아보세요.`:`현재 앱에 등록된 ${scope.full} 업체 목록이 없습니다. 아래 지도 검색 또는 API 검색으로 새 업체를 찾을 수 있습니다.`);return}
 const grid=document.createElement('div');grid.className='placegrid';for(const shop of out)grid.append(createShopCard(shop));box.append(grid)}
 function renderOfficial(){const v=$('brand').value;const eligible=brands.filter(b=>!v||v==='기타'||v==='롯데보일러'||b.name===v);const grid=$('officialGrid');grid.replaceChildren();for(const b of eligible){const card=document.createElement('div');card.className='official';const title=document.createElement('div');title.className='offtitle';title.textContent=b.name;const sub=document.createElement('div');sub.className='offsub';sub.textContent=b.note;const phone=document.createElement('div');phone.className='offnum';phone.textContent=b.phone;const actions=document.createElement('div');actions.className='offbtns';actions.append(btnLink('☎ 전화하기','tel:'+b.phone.replace(/-/g,''),true),btnLink('공식 사이트 ↗',b.site,false));card.append(title,sub,phone,actions);grid.append(card)}if(v==='롯데보일러'){const msg=document.createElement('div');msg.className='empty';msg.style.gridColumn='1/-1';msg.textContent='롯데보일러는 제품 모델에 따른 A/S 주체를 먼저 확인해 주세요.';grid.prepend(msg)}}
-function renderApiPlaces(data,centerUsed){const box=$('apiresult');box.replaceChildren();if(!data.length){emptyIn(box,'지도 API에서 선택한 동·구에 주소가 일치하는 업체를 찾지 못했습니다. 위 지도 링크로 추가 확인해 주세요.');return}const p=document.createElement('p');p.className='fine';p.textContent=`실시간 지도 검색 결과 ${data.length}곳 · ${centerUsed?'지역 중심 검색':'지역 키워드 검색'} · 주소가 선택 범위에 속하는 업체만 표시 · 공식 인증 미확인`;box.append(p);const grid=document.createElement('div');grid.className='placegrid';for(const item of data){const card=document.createElement('article');card.className='place';const title=document.createElement('div');title.className='ptitle';title.textContent=item.place_name;const addr=document.createElement('div');addr.className='paddr';addr.textContent=item.road_address_name||item.address_name||'주소 없음';const note=document.createElement('div');note.className='pmeta';note.textContent=item.phone||'전화번호 미등록';const acts=document.createElement('div');acts.className='pactions';if(item.phone)acts.append(btnLink('☎ 전화','tel:'+item.phone.replace(/[^0-9+]/g,''),true));acts.append(btnLink('지도 보기 ↗',item.place_url||hrefKakao(item.place_name),false));card.append(title,addr,note,acts);grid.append(card)}box.append(grid)}
-function filterByArea(place,scope){const addr=place.address_name||place.road_address_name||'';if(scope.dong&&!addr.includes(scope.dong))return false;if(scope.gu&&!addr.includes(scope.gu))return false;if(scope.city&&!addr.includes(scope.city))return false;return true}
-function keywordSearch(term,opts){return new Promise(resolve=>{places.keywordSearch(term,(data,status)=>{resolve(status===kakao.maps.services.Status.OK?data:[])},opts)})}
-function getAddressCenter(q){return new Promise(resolve=>{const coder=new kakao.maps.services.Geocoder();coder.addressSearch(q,(data,status)=>{if(status===kakao.maps.services.Status.OK&&data.length)resolve({lat:+data[0].y,lng:+data[0].x});else resolve(null)})})}
-async function liveSearch(){const scope=currentScope();const q=getQuery();emptyIn($('apiresult'),'지도에서 새 수리업체를 불러오는 중입니다…');try{const center=currentPosition&&!scope.sido?currentPosition:await getAddressCenter(q.region);const keys=q.brand&&q.brand!=='기타'?[`${q.brand} 보일러 수리`,`${q.brand} 서비스`, '보일러 수리','난방 설비']:['보일러 수리','보일러 설비','난방 배관 수리','보일러 AS'];const opts=center?{location:new kakao.maps.LatLng(center.lat,center.lng),radius:scope.dong?4000:9000,sort:kakao.maps.services.SortBy.DISTANCE}:{};const terms=keys.map(k=>scope.sido?`${q.region} ${k}`:k);
-const batches=await Promise.all(terms.map(t=>keywordSearch(t,opts)));const seen=new Set();let out=[];for(const place of batches.flat()){if(seen.has(place.id))continue;seen.add(place.id);if(scope.sido&&!filterByArea(place,scope))continue;out.push(place)}out=out.slice(0,30);renderApiPlaces(out,!!center)}catch(e){emptyIn($('apiresult'),'검색을 불러오지 못했습니다. 지도 링크를 이용하거나 JavaScript 키/도메인 설정을 확인해 주세요.')}}
-function connectSDK(){if(sdkReady){notify('카카오 지도 API가 이미 연결되었습니다.');return}if(connecting)return;const key=$('apiKey').value.trim();if(!/^[a-zA-Z0-9_-]{12,120}$/.test(key)){notify('카카오 JavaScript 키를 확인해 주세요.');return}if(location.protocol==='file:'){$('apiMessage').textContent='웹사이트(HTTPS)에 게시한 뒤 JavaScript 키 및 도메인을 연결해 주세요.';return}connecting=true;$('apiMessage').textContent='카카오 지도 API 연결 확인 중…';const script=document.createElement('script');script.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+enc(key)+'&libraries=services&autoload=false';script.onload=()=>{try{window.kakao.maps.load(()=>{sdkReady=true;connecting=false;places=new kakao.maps.services.Places();$('apiMessage').textContent='연결되었습니다. 위 검색 버튼을 누르면 지역별 새 업체를 조회합니다.';$('modeLabel').textContent='실시간 검색 + 동별 필터';notify('카카오 지도 API 연결 완료')})}catch(e){connecting=false;$('apiMessage').textContent='API 초기화에 실패했습니다.'}};script.onerror=()=>{connecting=false;$('apiMessage').textContent='API 로드 실패: 등록 도메인 또는 JavaScript 키를 확인하세요.'};document.head.append(script)}
-function doSearch(scroll=true){const s=currentScope();if(!s.sido&&!currentPosition){notify('시·도부터 차례로 선택해 주세요.');$('sido').focus();return}if(s.sido&&!s.city&&!s.gu&&s.sido!=='세종특별자치시'){notify('시·군 또는 구를 선택해 주세요.');return}refreshUI();renderOfficial();if(sdkReady)liveSearch();else emptyIn($('apiresult'),'앱 내 신규 업체 실시간 조회는 선택 기능입니다. 위의 동네 등록 업체와 지도 검색은 API 없이 바로 사용할 수 있습니다.');if(scroll)$('results').scrollIntoView({behavior:'smooth',block:'start'});}
+// API 결과는 실시간 화면 조회만 유지하며, 지도 API 결과를 앱 자체 DB에 영구 저장하지 않습니다.
+function simpleArea(text){return (text||'').replace(/\s+/g,' ').trim()}
+// 카카오 지번 주소의 시도명은 "서울", "경기", "전북"처럼 짧게 표시될 수 있습니다.
+const provinceShort={'서울특별시':'서울','부산광역시':'부산','대구광역시':'대구','인천광역시':'인천','광주광역시':'광주','대전광역시':'대전','울산광역시':'울산','세종특별자치시':'세종','경기도':'경기','강원특별자치도':'강원','충청북도':'충북','충청남도':'충남','전북특별자치도':'전북','전라남도':'전남','경상북도':'경북','경상남도':'경남','제주특별자치도':'제주'};
+function sameProvince(addr,sido){if(!sido)return true;const first=simpleArea(addr).split(' ')[0];const short=provinceShort[sido]||sido;return first===sido||first===short||(sido==='전북특별자치도'&&first==='전라북도')||(sido==='강원특별자치도'&&first==='강원도')||(sido==='제주특별자치도'&&first==='제주도')||(sido==='세종특별자치시'&&first==='세종시')}
+function matchesParent(addr,scope){return sameProvince(addr,scope.sido)&&[scope.city,scope.gu].filter(Boolean).every(v=>addr.includes(v))}
+function isRelevantPlace(item){const text=[item.place_name,item.category_name].filter(Boolean).join(' ');return /(보일러|난방|온수|설비|배관|수리|서비스센터|열관리|홈케어)/.test(text)}
+function placeKind(item){return /(귀뚜라미|경동|나비엔|린나이|대성|쎌틱|롯데보일러|서비스판매점|서비스센터|as센터|a\/s센터)/i.test(item.place_name||'')?'brand':'indie'}
+function scopeClass(place,scope,center){
+ if(!scope.sido){return{kind:'local',label:'현재 위치 주변',rank:0}}
+ const jibun=simpleArea(place.address_name), road=simpleArea(place.road_address_name);
+ const base=jibun||road; if(!base)return null;
+ // 행정동과 법정동이 서로 다를 수 있습니다. 확실한 소재지만 "동 소재"로 표시합니다.
+ const parentOK=matchesParent(base,scope);
+ const dongOK=!!scope.dong&&jibun.includes(scope.dong)&&parentOK;
+ if(dongOK)return{kind:'local',label:scope.dong+' 소재',rank:0};
+ if(!scope.dong&&parentOK)return{kind:'local',label:'선택 지역 소재',rank:0};
+ if(!$('includeNearby').checked)return null;
+ const sameDistrict=matchesParent(base,scope);
+ if(sameDistrict)return{kind:'near',label:scope.gu?'같은 구·인근 동':scope.city?'같은 시·인근 읍면동':'같은 시도',rank:1};
+ const distance=center&&Number.isFinite(+place.distance)?+place.distance:NaN;
+ // 다른 구는 실제 중심 좌표로부터 가까울 때에만 인근으로 분류합니다.
+ if(center&&Number.isFinite(distance)&&distance<=10000&&sameProvince(base,scope.sido))return{kind:'near',label:'인근 지역 (위치 기준)',rank:2};
+ return null;
+}
+function apiFilter(item){return filterKind==='all'||item.kind===filterKind}
+function makeApiCard(item){
+ const p=item.raw,card=document.createElement('article');card.className='place';
+ const badge=document.createElement('span');badge.className='shopbadge '+(item.area.kind==='near'?'nearbadge':'livebadge');
+ badge.textContent=item.area.label+' · '+(item.kind==='brand'?'브랜드 관련점':'동네 수리·설비');
+ const title=document.createElement('div');title.className='ptitle';title.textContent=p.place_name||'업체명 미확인';
+ const addr=document.createElement('div');addr.className='paddr';addr.textContent=p.road_address_name||p.address_name||'주소 미등록';
+ const meta=document.createElement('div');meta.className='pmeta';meta.textContent=(p.phone||'전화번호 미등록')+(p.distance?' · 기준점 약 '+(Math.round(Number(p.distance)/100)/10).toFixed(1)+'km':'');
+ const note=document.createElement('div');note.className='live-note';note.textContent='카카오 지도 검색 정보 · 영업/출장/공식 인증 여부 미확인';
+ const acts=document.createElement('div');acts.className='pactions';
+ if(p.phone)acts.append(btnLink('☎ 전화','tel:'+p.phone.replace(/[^0-9+]/g,''),true));
+ acts.append(btnLink('카카오맵 상세',p.place_url||hrefKakao(`${p.place_name} ${p.address_name||''}`),false));
+ acts.append(btnLink('네이버지도',hrefNaver(`${p.place_name} ${p.address_name||''}`),false));
+ card.append(badge,title,addr,meta,note,acts);return card;
+}
+function showSearchDiagnostics(){
+ const box=$('searchDiagnostics');if(!box)return;
+ const connection=sdkReady?'SDK 연결됨 (실제 장소 조회는 별도)':connecting?'SDK 연결 확인 중':'SDK 연결되지 않음';
+ box.textContent=`검색 버튼 클릭 ${searchClicks}회 · ${connection} · ${searchStage}` + (lastErrorText?` · 오류: ${lastErrorText}`:'');
+ box.dataset.error=lastErrorText?'true':'false';
+}
+function updateSearchOverview(){
+ const el=$('searchOverview');if(!el)return;
+ const localCount=Number(($('registeredCount').textContent||'').match(/^\d+/)?.[0]||0);
+ const liveCount=liveResults.filter(apiFilter).length;
+ const state=liveStatus==='loading'?'실시간 검색 중…':liveStatus==='awaiting'?'검색 버튼을 눌러주세요':liveStatus==='disconnected'?'카카오 API 연결 필요':liveStatus==='error'?'실시간 검색 오류':liveStatus==='partial'?'일부 검색에 오류가 있었습니다':liveStatus==='success'?`실시간 ${liveCount}곳 확인`:'검색 대기';
+ el.textContent=`지도 API: ${state}  |  사전 등록: ${localCount}곳`; 
+ el.dataset.state=liveStatus;showSearchDiagnostics();
+}
+function renderApiPlaces(){
+ const box=$('apiresult');box.replaceChildren();updateSearchOverview();
+ if(liveStatus==='connecting'){emptyIn(box,'카카오맵 SDK 연결 중입니다. 연결 확인 후 검색을 자동 실행합니다.');$('liveCount').textContent='연결 중';return}
+ if(liveStatus==='loading'){emptyIn(box,'지도에서 보일러 업체를 조회하는 중입니다…');$('liveCount').textContent='검색 중';return}
+ if(liveStatus==='awaiting'){emptyIn(box,'지역 또는 브랜드가 변경되었습니다. 위 검색 버튼을 눌러 해당 지역 업체를 새로 조회해 주세요.');$('liveCount').textContent='검색 대기';return}
+ if(liveStatus==='disconnected'){emptyIn(box,'실시간 검색을 사용하려면 카카오맵 JavaScript 키를 최초 1회 설정해야 합니다. 아래 지도 링크는 키 없이 사용할 수 있습니다.');$('liveCount').textContent='지도 API 연결 필요';return}
+ if(liveStatus==='error'){emptyIn(box,'지도 API 검색 오류: '+(lastErrorText||'요청을 완료하지 못했습니다.')+' · 실제 업체가 0곳이라는 의미는 아닙니다.');$('liveCount').textContent='조회 오류';return}
+ const visible=liveResults.filter(apiFilter);$('liveCount').textContent=visible.length+'곳 실시간';
+ if(!visible.length){emptyIn(box,liveStatus==='partial'?'일부 요청에서 오류가 있었고 표시 가능한 업체가 없습니다. 잠시 후 다시 검색하거나 지도 링크를 확인하세요.':'현재 조건에 맞는 지도 등록 업체를 찾지 못했습니다. 검색 범위를 넓히거나 지도 링크에서 확인하세요.');return}
+ const source=document.createElement('p');source.className='search-state';source.textContent=`${liveScopeName} · 실시간 ${visible.length}곳 (조회 결과 최대 60곳, 직접 등록 업체와 중복 가능)${liveStatus==='partial'?' · 일부 검색 요청 실패':''}`;box.append(source);
+ const groups=[{kind:'local',title:'① 선택한 동·지역 소재',desc:'지번 주소 등에서 선택 지역이 확인된 업체'},{kind:'near',title:'② 같은 구 또는 주변 지역',desc:'선택 동 밖에 소재하는 업체 · 출장 가능 여부는 전화 문의'}];
+ for(const group of groups){const arr=visible.filter(v=>v.area.kind===group.kind);if(!arr.length)continue;
+  const heading=document.createElement('h4');heading.className='group-title';heading.textContent=group.title+' · '+arr.length+'곳';box.append(heading);
+  const sub=document.createElement('p');sub.className='group-desc';sub.textContent=group.desc;box.append(sub);
+  const grid=document.createElement('div');grid.className='placegrid live-place-grid';arr.forEach(v=>grid.append(makeApiCard(v)));box.append(grid);
+ }
+}
+function keywordSearchPaged(term,opts,maxPages=1){
+ return new Promise((resolve,reject)=>{
+  // 검색어별 별도 Places 객체: 병렬/페이징 간 간섭 방지
+  const service=new kakao.maps.services.Places(),found=[];let page=1,settled=false;
+  const timer=setTimeout(()=>{if(!settled){settled=true;reject(Error('지도 검색 시간 초과'))}},14000);
+  const finish=(err)=>{if(settled)return;settled=true;clearTimeout(timer);err?reject(err):resolve(found)};
+  function getPage(){service.keywordSearch(term,(rows,status,pagination)=>{
+   if(settled)return;
+   if(status===kakao.maps.services.Status.ZERO_RESULT){finish();return}
+   if(status!==kakao.maps.services.Status.OK){finish(Error('카카오 지도 API 응답 오류: '+status));return}
+   found.push(...rows);if(page<maxPages&&pagination&&pagination.hasNextPage){page++;pagination.nextPage();}else finish();
+  },{...opts,size:15,page});}
+  getPage();
+ });
+}
+function addressCenter(text){return new Promise(resolve=>{
+ const coder=new kakao.maps.services.Geocoder();let done=false;
+ const timer=setTimeout(()=>{if(!done){done=true;resolve(null)}},6500);
+ coder.addressSearch(text,(rows,status)=>{if(done)return;done=true;clearTimeout(timer);resolve(status===kakao.maps.services.Status.OK&&rows.length?{lat:+rows[0].y,lng:+rows[0].x}:null)});
+})}
+async function resolveCenter(scope){
+ if(currentPosition&&!scope.sido)return currentPosition;
+ const texts=[scope.full,[scope.sido,scope.city,scope.gu].filter(Boolean).join(' '),[scope.sido,scope.city].filter(Boolean).join(' ')];
+ for(const area of [...new Set(texts.filter(Boolean))]){const center=await addressCenter(area);if(center)return center}
+ return null;
+}
+function sortPlaces(items){return items.sort((a,b)=>a.area.rank-b.area.rank||(Number(a.raw.distance)||999999)-(Number(b.raw.distance)||999999)||a.raw.place_name.localeCompare(b.raw.place_name,'ko'))}
+async function liveSearch(){
+ if(!sdkReady)return;
+ const seq=++searchSeq,scope=currentScope(),region=scope.full;
+ lastErrorText='';searchStage='선택 지역의 중심 위치 확인 중';
+ liveScopeName=region||'현재 위치 주변';liveStatus='loading';renderApiPlaces();
+ const brand=$('brand').value,keywords=brand&&brand!=='기타'?[brand+' 보일러 수리',brand+' 서비스센터','보일러 수리','난방 설비']:['보일러 수리','보일러 설비','난방 배관 수리','보일러 AS'];
+ const unique=new Map();let failures=0,successes=0;const failuresList=[];
+ try{
+  const center=await resolveCenter(scope);if(seq!==searchSeq)return;
+  searchStage=center?'좌표 확인 · 카카오맵 장소 조회 중':'좌표 미확인 · 지역명으로 장소 조회 중';showSearchDiagnostics();
+  async function collect(batch){
+   const settled=await Promise.allSettled(batch.map(job=>keywordSearchPaged(job.term,job.opts,job.pages)));
+   if(seq!==searchSeq)return;
+   for(const result of settled){if(result.status==='rejected'){failures++;failuresList.push(String(result.reason?.message||'검색 요청 오류').slice(0,100));continue}successes++;
+    for(const raw of result.value){if(!raw?.place_name||!isRelevantPlace(raw))continue;
+     const area=scopeClass(raw,scope,center);if(!area)continue;
+     const id=raw.id||raw.place_name+'|'+raw.address_name;
+     const old=unique.get(id);if(!old||area.rank<old.area.rank)unique.set(id,{raw,area,kind:placeKind(raw)});
+    }
+   }
+  }
+  // 1단계: 지역명+업종 검색. 좌표 없이 검색하여 주소 인식·검색 누락 완화
+  const focus=keywords.slice(0,3).map(term=>({term:region?region+' '+term:term,opts:{sort:kakao.maps.services.SortBy.ACCURACY},pages:2}));
+  await collect(focus);if(seq!==searchSeq)return;
+  searchStage='지역명 검색 완료 · 인근 검색 확인 중';showSearchDiagnostics();
+  // 2단계: 주소의 동 표기가 달라도 주변에서 실제 수리점을 발견
+  if(center){const near={location:new kakao.maps.LatLng(center.lat,center.lng),radius:scope.dong?3500:7000,sort:kakao.maps.services.SortBy.DISTANCE};
+   await collect(keywords.slice(0,3).map(term=>({term,opts:near,pages:2})));if(seq!==searchSeq)return;
+  }
+  // 3단계: 검색 결과 부족 시 인근으로 단계적 확장
+  if($('includeNearby').checked&&center&&unique.size<8){const wide={location:new kakao.maps.LatLng(center.lat,center.lng),radius:scope.dong?10000:14000,sort:kakao.maps.services.SortBy.DISTANCE};
+   await collect(['보일러 수리','난방 설비'].map(term=>({term,opts:wide,pages:1})));if(seq!==searchSeq)return;
+  }
+  liveResults=sortPlaces([...unique.values()]).slice(0,60);liveStatus=!successes&&failures?'error':failures?'partial':'success';
+  lastErrorText=failures?failuresList[0]||'일부 검색 요청이 실패했습니다.':'';
+  searchStage=`검색 종료 (성공 ${successes}회 / 오류 ${failures}회 · 표시 ${liveResults.length}곳)`;renderApiPlaces();
+ }catch(e){if(seq!==searchSeq)return;liveResults=[];liveStatus='error';lastErrorText=String(e?.message||e).slice(0,160);searchStage='검색 도중 예외 발생';renderApiPlaces()}
+}
+function connectSDK(keyOverride=''){
+ if(sdkReady){notify('카카오맵 SDK가 연결되어 있습니다. 실제 업체 검색을 다시 실행합니다.');doSearch(false);return}
+ if(connecting){pendingSearch=true;notify('지도 SDK 연결 중입니다. 연결 후 자동으로 검색합니다.');return}
+ const key=(keyOverride||$('apiKey').value||'').trim();
+ if(!/^[a-zA-Z0-9_-]{12,120}$/.test(key)){
+  lastErrorText='JavaScript 키가 입력되지 않았거나 형식이 맞지 않습니다.';searchStage='SDK 연결 준비 실패';liveStatus='disconnected';renderApiPlaces();notify('카카오맵 JavaScript 키를 확인해 주세요.');return;
+ }
+ if(location.protocol==='file:'){
+  lastErrorText='로컬 파일에서는 지도 API를 실행할 수 없습니다. HTTPS 주소에서 여세요.';
+  searchStage='SDK 연결 불가';liveStatus='error';renderApiPlaces();return;
+ }
+ connecting=true;pendingSearch=true;lastErrorText='';searchStage='카카오맵 SDK 파일 요청 중';liveStatus='connecting';renderApiPlaces();
+ $('apiMessage').textContent='카카오맵 JavaScript SDK 연결 확인 중…';
+ const script=document.createElement('script');script.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+enc(key)+'&libraries=services&autoload=false';
+ let ended=false;
+ const watchdog=setTimeout(()=>fail('SDK 응답 시간 초과 (15초). 네트워크/도메인/차단 설정을 확인하세요.'),15000);
+ function fail(message){
+  if(ended)return;ended=true;clearTimeout(watchdog);connecting=false;sdkReady=false;pendingSearch=false;
+  lastErrorText=message;searchStage='지도 SDK 연결 실패';liveStatus='error';renderApiPlaces();
+  $('apiMessage').textContent='지도 API 연결 실패: '+message;
+ }
+ script.onload=()=>{
+  try{
+   if(!window.kakao?.maps?.load||!window.kakao?.maps?.services?.Places)throw Error('카카오 지도 서비스를 초기화할 수 없습니다.');
+   window.kakao.maps.load(()=>{
+    try{
+     if(ended)return;new window.kakao.maps.services.Places();
+     ended=true;clearTimeout(watchdog);sdkReady=true;connecting=false;
+     if(!DEFAULT_KAKAO_JS_KEY)put('map_js_key',key);
+     $('apiMessage').textContent='지도 SDK 연결 완료. 실제 장소 조회를 실행하여 결과를 확인합니다.';
+     $('modeLabel').textContent='동 소재 우선 + 인근 검색';
+     searchStage='SDK 연결됨 · 실시간 검색 실행 중';
+     notify('카카오 지도 SDK 연결됨. 실제 장소 검색을 시작합니다.');
+     pendingSearch=false;doSearch(false);
+    }catch(e){fail('지도 서비스 생성 실패: '+String(e?.message||e).slice(0,100))}
+   });
+  }catch(e){fail('SDK 초기화 오류: '+String(e?.message||e).slice(0,100))}
+ };
+ script.onerror=()=>fail('SDK 파일 로드 실패. 앱 활성화·도메인·JavaScript 키·브라우저 차단 설정을 확인하세요.');
+ document.head.append(script);
+}
+function doSearch(scroll=true){
+ if(scroll)searchClicks++;
+ const s=currentScope();
+ if(!s.sido&&!currentPosition){searchStage='검색 조건 누락';notify('시·도부터 차례로 선택해 주세요.');$('sido').focus();showSearchDiagnostics();return}
+ if(s.sido&&!s.city&&!s.gu&&s.sido!=='세종특별자치시'){searchStage='시·군 또는 구 미선택';notify('시·군 또는 구를 선택해 주세요.');showSearchDiagnostics();return}
+ lastErrorText='';searchStage='버튼 클릭 인식 · 검색 준비 중';
+ try{
+  refreshUI(false);renderOfficial();
+  if(sdkReady){searchStage='카카오맵 실시간 검색 시작';liveSearch()}
+  else if(connecting){pendingSearch=true;searchStage='지도 SDK 연결 대기';liveStatus='connecting';renderApiPlaces()}
+  else{searchStage='지도 SDK 연결 필요';liveStatus='disconnected';liveResults=[];renderApiPlaces();}
+ }catch(e){searchStage='검색 함수 실행 오류';lastErrorText=String(e?.message||e).slice(0,160);liveStatus='error';renderApiPlaces()}
+ showSearchDiagnostics();
+ if(scroll)$('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
 function copyText(text){if(navigator.clipboard?.writeText){return navigator.clipboard.writeText(text)}const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-2000px';document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();return Promise.resolve()}
 function wireUI(){
-$('sido').addEventListener('change',()=>{currentPosition=null;rebuildCity();});
-$('city').addEventListener('change',()=>{currentPosition=null;rebuildGu();});
-$('gu').addEventListener('change',()=>{currentPosition=null;rebuildDong();});
-$('dong').addEventListener('change',()=>{currentPosition=null;refreshUI();});
+$('sido').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildCity();});
+$('city').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildGu();});
+$('gu').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildDong();});
+$('dong').addEventListener('change',()=>{currentPosition=null;if($('dong').value==='__manual__'){$('dongManual').focus()}refreshUI();});
 $('brand').addEventListener('change',()=>{put('brand',$('brand').value);renderOfficial();refreshUI()});
 $('search').addEventListener('click',()=>doSearch());
 $('exampleArea').addEventListener('click',()=>{applyRegion({sido:'서울특별시',city:'',gu:'중랑구',dong:'면목동'});doSearch();});
 $('symptoms').addEventListener('click',e=>{const btn=e.target.closest('[data-symptom]');if(!btn)return;symptom=btn.dataset.symptom;document.querySelectorAll('[data-symptom]').forEach(c=>c.classList.toggle('on',c===btn));refreshUI()});
-$('results').querySelector('.filterbar').addEventListener('click',e=>{const btn=e.target.closest('[data-filter]');if(!btn)return;filterKind=btn.dataset.filter;document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n===btn));renderRegistered()});
+$('results').querySelector('.filterbar').addEventListener('click',e=>{const btn=e.target.closest('[data-filter]');if(!btn)return;filterKind=btn.dataset.filter;document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n===btn));renderRegistered();if(liveStatus!=='idle')renderApiPlaces()});
 $('saveShop').addEventListener('click',()=>{const s=currentScope();if(!s.sido||(!s.gu&&!s.city)){notify('업체를 등록할 지역을 먼저 선택해 주세요.');return}if(!s.dong){notify('개인 업체를 등록하려면 읍·면·동까지 선택해 주세요.');return}const name=$('regName').value.trim(),phone=$('regPhone').value.trim(),addr=$('regAddr').value.trim(),note=$('regNote').value.trim();if(!name){notify('업체명을 입력해 주세요.');$('regName').focus();return}const item={...s,id:Date.now()+'_'+Math.random().toString(36).slice(2,7),name,phone,addr:addr||s.full,kind:'indie',note};savedShops.push(item);put('saved_shops',JSON.stringify(savedShops));$('regName').value='';$('regPhone').value='';$('regAddr').value='';$('regNote').value='';filterKind='all';document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n.dataset.filter==='all'));renderRegistered();notify('선택한 동네에 개인 수리점 기록을 저장했습니다.')});
-$('connect').addEventListener('click',connectSDK);
+$('connect').addEventListener('click',()=>connectSDK());
+$('includeNearby').addEventListener('change',()=>{if(sdkReady)doSearch(false);else renderApiPlaces()});
+$('dongManual').addEventListener('input',()=>{if($('dongManual').value.trim())$('dong').value='__manual__';refreshUI()});
+$('addDong').addEventListener('click',saveManualTown);
+$('dong').addEventListener('change',()=>{if($('dong').value&&$('dong').value!=='__manual__')$('dongManual').value='';refreshUI()});
 $('geo').addEventListener('click',()=>{if(!navigator.geolocation){notify('위치 기능이 지원되지 않습니다. 지역 선택을 이용해 주세요.');return}if(!window.isSecureContext){notify('현재 위치 기능은 HTTPS 웹사이트에서 사용해 주세요.');return}navigator.geolocation.getCurrentPosition(pos=>{currentPosition={lat:pos.coords.latitude,lng:pos.coords.longitude};$('sido').value='';rebuildCity();$('regionCrumb').textContent='현재 위치 주변';notify('현재 위치를 확인했습니다. 지도에서 주변 수리점을 찾을 수 있습니다.');refreshUI();doSearch();},()=>notify('위치를 확인하지 못했습니다. 지역 선택을 이용해 주세요.'),{enableHighAccuracy:false,maximumAge:60000,timeout:10000})});
 $('copyRequest').addEventListener('click',()=>{const s=currentScope();const text=["[보일러 수리 문의]",`지역: ${s.full||(currentPosition?'현재 위치 주변':'미입력')}`,`브랜드: ${$('brand').value||'미확인'}`,`모델명: ${$('model').value.trim()||'미확인'}`,`증상: ${symptom||'추가 확인 필요'}`,`에러코드: ${$('error').value.trim()||'없음/미확인'}`,`상세 내용: ${$('memo').value.trim()||'별도 전달'}`,'출장 가능 시간과 출장비·점검비·부품비를 안내 부탁드립니다.'].join('\n');copyText(text).then(()=>notify('문의 문구를 복사했습니다.')).catch(()=>notify('복사를 허용하지 않았습니다.'))});
 $('addQuote').addEventListener('click',()=>{const name=$('quoteName').value.trim(),price=$('quotePrice').value,note=$('quoteNote').value.trim();if(!name||price===''||!Number.isFinite(+price)||+price<0){notify('업체명과 예상 견적을 입력해 주세요.');return}quotes.push({id:Date.now()+'_'+Math.random().toString(36).slice(2,6),name,price:+price,note});put('quotes',JSON.stringify(quotes));$('quoteName').value='';$('quotePrice').value='';$('quoteNote').value='';renderQuotes();notify('수리 견적을 저장했습니다.')});
 }
 let quotes=[];try{const saved=JSON.parse(get('quotes','[]'));if(Array.isArray(saved))quotes=saved}catch(e){}
 function renderQuotes(){const box=$('quotes');box.replaceChildren();for(const q of [...quotes].sort((a,b)=>a.price-b.price)){const row=document.createElement('div');row.className='quotecard';const left=document.createElement('div');const title=document.createElement('strong');title.textContent=q.name;const note=document.createElement('small');note.textContent=q.note||'포함 내역 미기재';left.append(title,note);const right=document.createElement('div');right.style.display='flex';right.style.alignItems='center';right.style.gap='8px';const money=document.createElement('span');money.className='quoteprice';money.textContent=Number(q.price).toLocaleString('ko-KR')+'원';const del=document.createElement('button');del.className='xbtn';del.type='button';del.textContent='×';del.setAttribute('aria-label',q.name+' 견적 삭제');del.addEventListener('click',()=>{quotes=quotes.filter(x=>x.id!==q.id);put('quotes',JSON.stringify(quotes));renderQuotes()});right.append(money,del);row.append(left,right);box.append(row)}}
-async function loadRegions(){let timer;try{const controller=new AbortController();timer=setTimeout(()=>controller.abort(),6500);const res=await fetch(baseURL,{cache:'force-cache',signal:controller.signal});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();if(!Array.isArray(data.regions)||data.regions.length<17)throw Error('지역 데이터 오류');const previous=currentScope();regions=data.regions;dataState='remote';addSidos();applyRegion(previous);$('modeStatus').textContent='전국 읍·면·동 목록 불러오기 완료 · 2025년 8월 기준 주소 데이터 · 동네 업체 검색 가능';}catch(e){$('modeStatus').textContent='전국 주소 데이터를 불러오지 못했습니다. 기본 시·군·구와 중랑구 동 목록을 사용합니다. 인터넷 연결 시 전체 동 목록이 표시됩니다.'}finally{clearTimeout(timer)}}
+async function loadRegions(){let lastError;
+ for(const url of regionURLs){let timer;
+  try{const controller=new AbortController();timer=setTimeout(()=>controller.abort(),7000);
+   const res=await fetch(url,{cache:'default',signal:controller.signal});if(!res.ok)throw Error('HTTP '+res.status);
+   const data=await res.json();if(!Array.isArray(data.regions)||data.regions.length<17)throw Error('지역 데이터 오류');
+   const previous=currentScope();regions=data.regions;dataState='remote';
+   put('region_cache',JSON.stringify(regions));addSidos();applyRegion(previous);
+   if(sdkReady&&searchClicks>0)doSearch(false);
+   $('modeStatus').textContent='전국 상세 지역 목록 불러오기 완료 · 선택한 읍·면·동과 지도 API 검색은 별도 기능입니다.';return;
+  }catch(e){lastError=e}finally{clearTimeout(timer)}
+ }
+ $('modeStatus').textContent=dataState==='cached'?'저장된 지역 목록 사용 중 · 네트워크 재확인 필요 시 새로고침':'외부 지역 목록 접속 실패 · 내장 지역은 선택 가능하며 다른 읍·면·동도 직접 입력하거나 내 목록에 저장할 수 있습니다.';
+}
 function init(){addSidos();wireUI();const old=getStoredSelection();const legacy=(()=>{try{return localStorage.getItem('boilerfinder_v1_area')||''}catch(e){return''}})();
 const demo={sido:'서울특별시',city:'',gu:'중랑구',dong:'면목동'};
 if(old?.sido)applyRegion(old);else if(/중랑구|면목동/.test(legacy))applyRegion(demo);else applyRegion(demo);
-$('brand').value=get('brand','');renderOfficial();renderQuotes();refreshUI();doSearch(false);loadRegions();}
+$('brand').value=get('brand','');renderOfficial();renderQuotes();refreshUI();doSearch(false);
+$('modeStatus').textContent=dataState==='cached'?'저장된 전국 읍·면·동 목록 사용 중 · 새 목록 확인 중':'지역 선택 가능 · 상세 목록 업데이트 확인 중';
+loadRegions();
+ const configured=DEFAULT_KAKAO_JS_KEY||get('map_js_key','');
+ if(configured){$('apiKey').value=configured;connectSDK(configured)}else{$('apiMessage').textContent='앱 운영자가 JavaScript 키를 index.html에 설정하면 모든 방문자에게 실시간 검색을 제공할 수 있습니다. 키를 직접 입력한 경우에는 이 기기에만 적용됩니다.'}
+}
 init();
 })();
 
@@ -301,7 +569,7 @@ init();
    } else { installHelp.showModal(); }
  });
  if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
-   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
+   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).then(r=>r.update()).catch(()=>{}));
  }
 })();
 </script>
