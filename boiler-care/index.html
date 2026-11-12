@@ -73,7 +73,7 @@
 
 <section class="panel searchpanel" aria-label="지역별 수리점 검색">
  <div class="section-h"><h2><span class="number">01</span>수리점 찾기</h2><span class="sub">PC·모바일 동일한 지역 선택 방식</span></div>
- <p class="desc introdesc">지역을 차례로 선택해 주세요. <strong>주소를 직접 입력할 필요가 없습니다.</strong> 선택한 동의 수리점을 우선 검색합니다.</p>
+ <p class="desc introdesc">지역을 차례로 선택해 주세요. <strong>읍·면·동을 선택하면 자동 검색됩니다.</strong> 동 목록이 없어도 시·군·구 전체를 검색할 수 있습니다.</p>
  <div class="regiongrid">
   <div class="f"><label for="sido">① 시·도</label><select id="sido" aria-label="시도 선택"><option value="">시·도 선택</option></select></div>
   <div class="f"><label for="city">② 시·군</label><select id="city" aria-label="시군 선택" disabled><option value="">해당 없거나 자동 선택</option></select></div>
@@ -138,7 +138,7 @@
  <div class="helpgrid"><div class="warning"><strong>⚠ 가스 냄새가 난다면</strong>불꽃이나 전기 스위치를 조작하지 마세요. 가능하고 안전한 경우 가스 공급을 차단하고, 창문을 열어 환기한 후 안전한 곳으로 대피하여 <strong style="display:inline;color:#a24b23;margin:0">119 또는 도시가스 긴급센터</strong>에 연락하세요. 직접 분해·수리하지 마세요.</div><div class="checklist"><label><input type="checkbox">보일러 모델명과 설치 연도를 확인했습니다.</label><label><input type="checkbox">에러코드 또는 고장 화면을 사진으로 남겼습니다.</label><label><input type="checkbox">출장비·점검비·부품비를 구분해서 문의했습니다.</label><label><input type="checkbox">공식 서비스 여부 및 수리 보증을 확인했습니다.</label><label><input type="checkbox">수리 전 최종 금액 설명을 요청했습니다.</label></div></div>
 </section>
 </div>
-<footer>우리동네보일러(우동보) v2.5 · 생활 편의용 수리점 검색 도구<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
+<footer>우리동네보일러(우동보) v2.6 · 동 선택 즉시 검색 · 전국 검색 개선<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
 </main>
 <div class="toast" id="toast" role="status"></div>
 <dialog id="installHelp" class="installmodal" aria-label="우리동네보일러 앱 설치 안내">
@@ -159,7 +159,7 @@ const put=(key,val)=>{try{localStorage.setItem(LS+key,val)}catch(e){}};
 const enc=encodeURIComponent;
 // 운영자는 아래 따옴표 안에 카카오맵 JavaScript 키를 한 번만 넣어 배포합니다.
 // REST API 키/관리자 키는 절대 넣지 마세요. 도메인 제한을 반드시 설정하세요.
-// v2.5 — 2026-11-12: 카카오 Maps autoload=false 초기화 순서 수정
+// v2.6 — 2026-11-12: 읍면동 자동검색, 시군구 검색, 거리 기반 인근 지역 보완
 const DEFAULT_KAKAO_JS_KEY='';
 const regionURLs=[
   'https://raw.githubusercontent.com/junjun3180/JSON-South-Korea-Administrative-District-JSON-Data/main/regions.json',
@@ -225,7 +225,8 @@ const areaKey=()=>[$('sido').value,$('city').value,$('gu').value].join('|');
 try{const c=JSON.parse(get('region_cache','null'));if(Array.isArray(c)&&c.length===17&&c.every(r=>r&&Array.isArray(r.districts))){regions=c;dataState='cached'}}catch(e){}
 let filterKind='all',symptom='',currentPosition=null,places=null,sdkReady=false,connecting=false;
 let liveResults=[],liveStatus='idle',searchSeq=0,liveScopeName='',lastFilterScope='';
-let searchClicks=0, searchStage='검색 전', lastErrorText='', pendingSearch=false;
+let searchClicks=0, autoSearches=0, searchStage='검색 전', lastErrorText='', pendingSearch=false;
+let autoSearchTimer=null;const centerCache=new Map();let latestCenter=null;
 let savedShops=[];
 try{const x=JSON.parse(get('saved_shops','[]'));if(Array.isArray(x))savedShops=x.filter(s=>s&&s.name&&s.sido)}catch(e){}
 const uniq=arr=>[...new Set(arr.filter(v=>v!==null&&v!==undefined))];
@@ -298,7 +299,7 @@ for(const [i,k] of kws.entries()){const a=document.createElement('a');a.textCont
 function refreshUI(resetSearch=true){
  const scopeKey=JSON.stringify([currentScope(),$('brand').value,currentPosition]);
  const scopeChanged=lastFilterScope!==scopeKey;lastFilterScope=scopeKey;
- if(scopeChanged&&resetSearch){searchSeq++;liveResults=[];liveStatus='awaiting';searchStage='지역·브랜드 변경 후 검색 대기';renderApiPlaces()}
+ if(scopeChanged&&resetSearch){searchSeq++;liveResults=[];liveStatus='awaiting';searchStage='지역 변경 · 자동 검색 예약';renderApiPlaces()}
  updateAreaLabel();links();saveSelection();const q=getQuery();$('queryLine').textContent=q.region?`선택 지역: ${q.region} · ${q.brand||'전체 브랜드'}${symptom?' · '+symptom:''} | 동 소재 업체를 우선 표시하고 인근 업체는 별도로 표시합니다.`:'시·도부터 차례로 선택해 주세요.';renderRegistered();}
 function emptyIn(container,msg){container.replaceChildren();const d=document.createElement('div');d.className='empty';d.textContent=msg;container.append(d)}
 function btnLink(text,url,main){const a=document.createElement('a');a.className='btn '+(main?'btn-main':'btn-out')+' btn-sm';a.textContent=text;a.href=url;a.rel='noopener noreferrer';if(!url.startsWith('tel:'))a.target='_blank';return a}
@@ -320,23 +321,36 @@ function sameProvince(addr,sido){if(!sido)return true;const first=simpleArea(add
 function matchesParent(addr,scope){return sameProvince(addr,scope.sido)&&[scope.city,scope.gu].filter(Boolean).every(v=>addr.includes(v))}
 function isRelevantPlace(item){const text=[item.place_name,item.category_name].filter(Boolean).join(' ');return /(보일러|난방|온수|설비|배관|수리|서비스센터|열관리|홈케어)/.test(text)}
 function placeKind(item){return /(귀뚜라미|경동|나비엔|린나이|대성|쎌틱|롯데보일러|서비스판매점|서비스센터|as센터|a\/s센터)/i.test(item.place_name||'')?'brand':'indie'}
+function coordinateDistanceMeters(place,center){
+ if(!center)return NaN;
+ const lat=Number(place.y),lng=Number(place.x);
+ if(!Number.isFinite(lat)||!Number.isFinite(lng)||!Number.isFinite(center.lat)||!Number.isFinite(center.lng))return NaN;
+ const r=Math.PI/180,dlat=(lat-center.lat)*r,dlng=(lng-center.lng)*r;
+ const a=Math.sin(dlat/2)**2+Math.cos(center.lat*r)*Math.cos(lat*r)*Math.sin(dlng/2)**2;
+ return 6371000*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
 function scopeClass(place,scope,center){
- if(!scope.sido){return{kind:'local',label:'현재 위치 주변',rank:0}}
- const jibun=simpleArea(place.address_name), road=simpleArea(place.road_address_name);
- const base=jibun||road; if(!base)return null;
- // 행정동과 법정동이 서로 다를 수 있습니다. 확실한 소재지만 "동 소재"로 표시합니다.
- const parentOK=matchesParent(base,scope);
- const dongOK=!!scope.dong&&jibun.includes(scope.dong)&&parentOK;
- if(dongOK)return{kind:'local',label:scope.dong+' 소재',rank:0};
- if(!scope.dong&&parentOK)return{kind:'local',label:'선택 지역 소재',rank:0};
+ if(!scope.sido)return{kind:'local',label:'현재 위치 주변',rank:0};
+ const jibun=simpleArea(place.address_name),road=simpleArea(place.road_address_name);
+ const base=jibun||road;
+ const distance=coordinateDistanceMeters(place,center);
+ const parentOK=base?matchesParent(base,scope):false;
+ const dongOK=!!scope.dong&&parentOK&&(jibun.includes(scope.dong)||road.includes(scope.dong));
+ if(dongOK)return{kind:'local',label:scope.dong+' 주소 확인',rank:0};
+ if(!scope.dong&&parentOK)return{kind:'local',label:'선택 시군구 소재',rank:0};
  if(!$('includeNearby').checked)return null;
- const sameDistrict=matchesParent(base,scope);
- if(sameDistrict)return{kind:'near',label:scope.gu?'같은 구·인근 동':scope.city?'같은 시·인근 읍면동':'같은 시도',rank:1};
- const distance=center&&Number.isFinite(+place.distance)?+place.distance:NaN;
- // 다른 구는 실제 중심 좌표로부터 가까울 때에만 인근으로 분류합니다.
- if(center&&Number.isFinite(distance)&&distance<=10000&&sameProvince(base,scope.sido))return{kind:'near',label:'인근 지역 (위치 기준)',rank:2};
+ if(parentOK)return{kind:'near',label:scope.dong?'같은 시군구·다른 읍면동':'선택 지역 소재지',rank:1};
+ // 지역명이 다른 법정동 주소나 다른 시군구라도 지도 좌표로 실제 거리를 확인할 수 있을 때만 주변으로 표시합니다.
+ // 카카오 키워드 검색 응답의 distance는 빈 값일 수 있으므로 x/y 좌표로 직접 계산합니다.
+ const rural=/군$/.test(scope.city)||/군$/.test(scope.gu)||/읍$|면$/.test(scope.dong);
+ const maxNear=rural?20000:12000;
+ if(Number.isFinite(distance)&&distance<=maxNear){
+  const same=sameProvince(base,scope.sido);
+  return{kind:'near',label:same?'주변 지역 (지도 거리 확인)':'인접 시도 (지도 거리 확인)',rank:2};
+ }
  return null;
 }
+
 function apiFilter(item){return filterKind==='all'||item.kind===filterKind}
 function makeApiCard(item){
  const p=item.raw,card=document.createElement('article');card.className='place';
@@ -344,7 +358,7 @@ function makeApiCard(item){
  badge.textContent=item.area.label+' · '+(item.kind==='brand'?'브랜드 관련점':'동네 수리·설비');
  const title=document.createElement('div');title.className='ptitle';title.textContent=p.place_name||'업체명 미확인';
  const addr=document.createElement('div');addr.className='paddr';addr.textContent=p.road_address_name||p.address_name||'주소 미등록';
- const meta=document.createElement('div');meta.className='pmeta';meta.textContent=(p.phone||'전화번호 미등록')+(p.distance?' · 기준점 약 '+(Math.round(Number(p.distance)/100)/10).toFixed(1)+'km':'');
+ const meta=document.createElement('div');meta.className='pmeta';meta.textContent=(p.phone||'전화번호 미등록')+(Number.isFinite(coordinateDistanceMeters(p,latestCenter))?' · 기준점 약 '+(coordinateDistanceMeters(p,latestCenter)/1000).toFixed(1)+'km':'');
  const note=document.createElement('div');note.className='live-note';note.textContent='카카오 지도 검색 정보 · 영업/출장/공식 인증 여부 미확인';
  const acts=document.createElement('div');acts.className='pactions';
  if(p.phone)acts.append(btnLink('☎ 전화','tel:'+p.phone.replace(/[^0-9+]/g,''),true));
@@ -355,7 +369,7 @@ function makeApiCard(item){
 function showSearchDiagnostics(){
  const box=$('searchDiagnostics');if(!box)return;
  const connection=sdkReady?'SDK 연결됨 (실제 장소 조회는 별도)':connecting?'SDK 연결 확인 중':'SDK 연결되지 않음';
- box.textContent=`검색 버튼 클릭 ${searchClicks}회 · ${connection} · ${searchStage}` + (lastErrorText?` · 오류: ${lastErrorText}`:'');
+ box.textContent=`수동 검색 ${searchClicks}회 · 자동 검색 ${autoSearches}회 · ${connection} · ${searchStage}` + (lastErrorText?` · 오류: ${lastErrorText}`:'');
  box.dataset.error=lastErrorText?'true':'false';
 }
 function updateSearchOverview(){
@@ -370,7 +384,7 @@ function renderApiPlaces(){
  const box=$('apiresult');box.replaceChildren();updateSearchOverview();
  if(liveStatus==='connecting'){emptyIn(box,'카카오맵 SDK 연결 중입니다. 연결 확인 후 검색을 자동 실행합니다.');$('liveCount').textContent='연결 중';return}
  if(liveStatus==='loading'){emptyIn(box,'지도에서 보일러 업체를 조회하는 중입니다…');$('liveCount').textContent='검색 중';return}
- if(liveStatus==='awaiting'){emptyIn(box,'지역 또는 브랜드가 변경되었습니다. 위 검색 버튼을 눌러 해당 지역 업체를 새로 조회해 주세요.');$('liveCount').textContent='검색 대기';return}
+ if(liveStatus==='awaiting'){emptyIn(box,'선택한 지역을 자동으로 검색합니다. 카카오 API 미연결 시 아래 연결 설정을 확인하세요.');$('liveCount').textContent='자동 검색 준비';return}
  if(liveStatus==='disconnected'){emptyIn(box,'실시간 검색을 사용하려면 카카오맵 JavaScript 키를 최초 1회 설정해야 합니다. 아래 지도 링크는 키 없이 사용할 수 있습니다.');$('liveCount').textContent='지도 API 연결 필요';return}
  if(liveStatus==='error'){emptyIn(box,'지도 API 검색 오류: '+(lastErrorText||'요청을 완료하지 못했습니다.')+' · 실제 업체가 0곳이라는 의미는 아닙니다.');$('liveCount').textContent='조회 오류';return}
  const visible=liveResults.filter(apiFilter);$('liveCount').textContent=visible.length+'곳 실시간';
@@ -400,25 +414,27 @@ function keywordSearchPaged(term,opts,maxPages=1){
 }
 function addressCenter(text){return new Promise(resolve=>{
  const coder=new kakao.maps.services.Geocoder();let done=false;
- const timer=setTimeout(()=>{if(!done){done=true;resolve(null)}},6500);
+ const timer=setTimeout(()=>{if(!done){done=true;resolve(null)}},4200);
  coder.addressSearch(text,(rows,status)=>{if(done)return;done=true;clearTimeout(timer);resolve(status===kakao.maps.services.Status.OK&&rows.length?{lat:+rows[0].y,lng:+rows[0].x}:null)});
 })}
 async function resolveCenter(scope){
  if(currentPosition&&!scope.sido)return currentPosition;
  const texts=[scope.full,[scope.sido,scope.city,scope.gu].filter(Boolean).join(' '),[scope.sido,scope.city].filter(Boolean).join(' ')];
- for(const area of [...new Set(texts.filter(Boolean))]){const center=await addressCenter(area);if(center)return center}
+ for(const area of [...new Set(texts.filter(Boolean))]){if(centerCache.has(area))return centerCache.get(area);const center=await addressCenter(area);if(center){centerCache.set(area,center);return center}}
  return null;
 }
-function sortPlaces(items){return items.sort((a,b)=>a.area.rank-b.area.rank||(Number(a.raw.distance)||999999)-(Number(b.raw.distance)||999999)||a.raw.place_name.localeCompare(b.raw.place_name,'ko'))}
+function sortPlaces(items){return items.sort((a,b)=>a.area.rank-b.area.rank||(coordinateDistanceMeters(a.raw,latestCenter)||999999)-(coordinateDistanceMeters(b.raw,latestCenter)||999999)||a.raw.place_name.localeCompare(b.raw.place_name,'ko'))}
 async function liveSearch(){
  if(!sdkReady)return;
  const seq=++searchSeq,scope=currentScope(),region=scope.full;
  lastErrorText='';searchStage='선택 지역의 중심 위치 확인 중';
  liveScopeName=region||'현재 위치 주변';liveStatus='loading';renderApiPlaces();
- const brand=$('brand').value,keywords=brand&&brand!=='기타'?[brand+' 보일러 수리',brand+' 서비스센터','보일러 수리','난방 설비']:['보일러 수리','보일러 설비','난방 배관 수리','보일러 AS'];
+ const brand=$('brand').value,keywords=brand&&brand!=='기타'?
+  [brand+' 보일러',brand+' 서비스센터','보일러 수리','난방 설비']:
+  ['보일러 수리','보일러','난방 설비','보일러 서비스센터'];
  const unique=new Map();let failures=0,successes=0;const failuresList=[];
  try{
-  const center=await resolveCenter(scope);if(seq!==searchSeq)return;
+  const center=await resolveCenter(scope);if(seq!==searchSeq)return;latestCenter=center;
   searchStage=center?'좌표 확인 · 카카오맵 장소 조회 중':'좌표 미확인 · 지역명으로 장소 조회 중';showSearchDiagnostics();
   async function collect(batch){
    const settled=await Promise.allSettled(batch.map(job=>keywordSearchPaged(job.term,job.opts,job.pages)));
@@ -431,17 +447,31 @@ async function liveSearch(){
     }
    }
   }
-  // 1단계: 지역명+업종 검색. 좌표 없이 검색하여 주소 인식·검색 누락 완화
-  const focus=keywords.slice(0,3).map(term=>({term:region?region+' '+term:term,opts:{sort:kakao.maps.services.SortBy.ACCURACY},pages:2}));
+  // 1단계: 선택한 읍면동을 명시해 검색합니다. 전국 농어촌에서도 검색어가 지나치게 긴 경우를 고려합니다.
+  const localNames=[region,[scope.city,scope.gu,scope.dong].filter(Boolean).join(' ')].filter(Boolean);
+  const focus=[
+   {term:localNames[0]+' '+keywords[0],opts:{sort:kakao.maps.services.SortBy.ACCURACY},pages:2},
+   {term:localNames[0]+' 보일러',opts:{sort:kakao.maps.services.SortBy.ACCURACY},pages:2}
+  ];
   await collect(focus);if(seq!==searchSeq)return;
-  searchStage='지역명 검색 완료 · 인근 검색 확인 중';showSearchDiagnostics();
-  // 2단계: 주소의 동 표기가 달라도 주변에서 실제 수리점을 발견
-  if(center){const near={location:new kakao.maps.LatLng(center.lat,center.lng),radius:scope.dong?3500:7000,sort:kakao.maps.services.SortBy.DISTANCE};
-   await collect(keywords.slice(0,3).map(term=>({term,opts:near,pages:2})));if(seq!==searchSeq)return;
+  searchStage='선택 지역 검색 완료 · 같은 시군구/주변 검색 중';showSearchDiagnostics();
+  // 2단계: 읍면동 결과 부족 시 같은 시군구를 넓게 검색합니다.
+  const parent=[scope.sido,scope.city,scope.gu].filter(Boolean).join(' ');
+  if(unique.size<7&&scope.dong&&parent){
+   await collect([
+    {term:parent+' 보일러',opts:{sort:kakao.maps.services.SortBy.ACCURACY},pages:2},
+    {term:parent+' 난방 설비',opts:{sort:kakao.maps.services.SortBy.ACCURACY},pages:1}
+   ]);if(seq!==searchSeq)return;
   }
-  // 3단계: 검색 결과 부족 시 인근으로 단계적 확장
-  if($('includeNearby').checked&&center&&unique.size<8){const wide={location:new kakao.maps.LatLng(center.lat,center.lng),radius:scope.dong?10000:14000,sort:kakao.maps.services.SortBy.DISTANCE};
-   await collect(['보일러 수리','난방 설비'].map(term=>({term,opts:wide,pages:1})));if(seq!==searchSeq)return;
+  // 3단계: API가 제공하는 x/y 좌표로 좁은 지역의 업체를 확인합니다.
+  const rural=/군$/.test(scope.city)||/군$/.test(scope.gu)||/읍$|면$/.test(scope.dong);
+  if(center){const near={location:new kakao.maps.LatLng(center.lat,center.lng),radius:rural?12000:7000,sort:kakao.maps.services.SortBy.DISTANCE};
+   await collect(['보일러','보일러 수리','난방 설비'].map(term=>({term,opts:near,pages:2})));if(seq!==searchSeq)return;
+  }
+  // 4단계: 결과가 부족할 때 최대 20km까지 검색해 주변 지역을 별도 표시합니다.
+  if($('includeNearby').checked&&center&&unique.size<8){
+   const wide={location:new kakao.maps.LatLng(center.lat,center.lng),radius:20000,sort:kakao.maps.services.SortBy.DISTANCE};
+   await collect(['보일러','설비'].map(term=>({term,opts:wide,pages:1})));if(seq!==searchSeq)return;
   }
   liveResults=sortPlaces([...unique.values()]).slice(0,60);liveStatus=!successes&&failures?'error':failures?'partial':'success';
   lastErrorText=failures?failuresList[0]||'일부 검색 요청이 실패했습니다.':'';
@@ -494,8 +524,9 @@ function connectSDK(keyOverride=''){
  script.onerror=()=>fail('SDK 파일 로드 실패. 앱 활성화·도메인·JavaScript 키·브라우저 차단 설정을 확인하세요.');
  document.head.append(script);
 }
-function doSearch(scroll=true){
- if(scroll)searchClicks++;
+function doSearch(scroll=true,source='manual'){
+ if(scroll){searchClicks++;if(autoSearchTimer!==null){clearTimeout(autoSearchTimer);autoSearchTimer=null}}
+ else if(source==='auto')autoSearches++;
  const s=currentScope();
  if(!s.sido&&!currentPosition){searchStage='검색 조건 누락';notify('시·도부터 차례로 선택해 주세요.');$('sido').focus();showSearchDiagnostics();return}
  if(s.sido&&!s.city&&!s.gu&&s.sido!=='세종특별자치시'){searchStage='시·군 또는 구 미선택';notify('시·군 또는 구를 선택해 주세요.');showSearchDiagnostics();return}
@@ -509,13 +540,27 @@ function doSearch(scroll=true){
  showSearchDiagnostics();
  if(scroll)$('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
+// 선택한 마지막 읍면동을 포함해 지역 조건이 정해지면 자동 검색합니다.
+// 중간에 지역을 빠르게 바꿀 때 이전 타이머를 취소하여 중복 호출을 줄입니다.
+function queueAutoSearch(delay=480,focusResults=false){
+ if(autoSearchTimer!==null){clearTimeout(autoSearchTimer);autoSearchTimer=null}
+ const scope=currentScope();
+ if(!scope.sido||(!scope.city&&!scope.gu&&scope.sido!=='세종특별자치시'))return;
+ autoSearchTimer=setTimeout(()=>{
+  autoSearchTimer=null;
+  const latest=currentScope();
+  if(!latest.sido||(!latest.city&&!latest.gu&&latest.sido!=='세종특별자치시'))return;
+  doSearch(false,'auto');
+  if(focusResults)$('results').scrollIntoView({behavior:'smooth',block:'start'});
+ },delay);
+}
 function copyText(text){if(navigator.clipboard?.writeText){return navigator.clipboard.writeText(text)}const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-2000px';document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();return Promise.resolve()}
 function wireUI(){
-$('sido').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildCity();});
-$('city').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildGu();});
-$('gu').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildDong();});
-$('dong').addEventListener('change',()=>{currentPosition=null;if($('dong').value==='__manual__'){$('dongManual').focus()}refreshUI();});
-$('brand').addEventListener('change',()=>{put('brand',$('brand').value);renderOfficial();refreshUI()});
+$('sido').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';if(autoSearchTimer!==null)clearTimeout(autoSearchTimer);autoSearchTimer=null;rebuildCity();});
+$('city').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildGu();queueAutoSearch(650);});
+$('gu').addEventListener('change',()=>{currentPosition=null;$('dongManual').value='';rebuildDong();queueAutoSearch(650);});
+$('dong').addEventListener('change',()=>{currentPosition=null;if($('dong').value==='__manual__'){$('dongManual').focus();refreshUI();return}if($('dong').value)$('dongManual').value='';refreshUI();queueAutoSearch(240,true);});
+$('brand').addEventListener('change',()=>{put('brand',$('brand').value);renderOfficial();refreshUI();queueAutoSearch(350)});
 $('search').addEventListener('click',()=>doSearch());
 $('exampleArea').addEventListener('click',()=>{applyRegion({sido:'서울특별시',city:'',gu:'중랑구',dong:'면목동'});doSearch();});
 $('symptoms').addEventListener('click',e=>{const btn=e.target.closest('[data-symptom]');if(!btn)return;symptom=btn.dataset.symptom;document.querySelectorAll('[data-symptom]').forEach(c=>c.classList.toggle('on',c===btn));refreshUI()});
@@ -523,9 +568,9 @@ $('results').querySelector('.filterbar').addEventListener('click',e=>{const btn=
 $('saveShop').addEventListener('click',()=>{const s=currentScope();if(!s.sido||(!s.gu&&!s.city)){notify('업체를 등록할 지역을 먼저 선택해 주세요.');return}if(!s.dong){notify('개인 업체를 등록하려면 읍·면·동까지 선택해 주세요.');return}const name=$('regName').value.trim(),phone=$('regPhone').value.trim(),addr=$('regAddr').value.trim(),note=$('regNote').value.trim();if(!name){notify('업체명을 입력해 주세요.');$('regName').focus();return}const item={...s,id:Date.now()+'_'+Math.random().toString(36).slice(2,7),name,phone,addr:addr||s.full,kind:'indie',note};savedShops.push(item);put('saved_shops',JSON.stringify(savedShops));$('regName').value='';$('regPhone').value='';$('regAddr').value='';$('regNote').value='';filterKind='all';document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n.dataset.filter==='all'));renderRegistered();notify('선택한 동네에 개인 수리점 기록을 저장했습니다.')});
 $('connect').addEventListener('click',()=>connectSDK());
 $('includeNearby').addEventListener('change',()=>{if(sdkReady)doSearch(false);else renderApiPlaces()});
-$('dongManual').addEventListener('input',()=>{if($('dongManual').value.trim())$('dong').value='__manual__';refreshUI()});
-$('addDong').addEventListener('click',saveManualTown);
-$('dong').addEventListener('change',()=>{if($('dong').value&&$('dong').value!=='__manual__')$('dongManual').value='';refreshUI()});
+$('dongManual').addEventListener('input',()=>{if($('dongManual').value.trim())$('dong').value='__manual__';refreshUI();if(!$('dongManual').value.trim()||$('dongManual').value.trim().length>=2)queueAutoSearch(900,true)});
+$('addDong').addEventListener('click',()=>{saveManualTown();queueAutoSearch(250)});
+// 읍면동 change 처리는 위에서 한 번만 실행합니다.
 $('geo').addEventListener('click',()=>{if(!navigator.geolocation){notify('위치 기능이 지원되지 않습니다. 지역 선택을 이용해 주세요.');return}if(!window.isSecureContext){notify('현재 위치 기능은 HTTPS 웹사이트에서 사용해 주세요.');return}navigator.geolocation.getCurrentPosition(pos=>{currentPosition={lat:pos.coords.latitude,lng:pos.coords.longitude};$('sido').value='';rebuildCity();$('regionCrumb').textContent='현재 위치 주변';notify('현재 위치를 확인했습니다. 지도에서 주변 수리점을 찾을 수 있습니다.');refreshUI();doSearch();},()=>notify('위치를 확인하지 못했습니다. 지역 선택을 이용해 주세요.'),{enableHighAccuracy:false,maximumAge:60000,timeout:10000})});
 $('copyRequest').addEventListener('click',()=>{const s=currentScope();const text=["[보일러 수리 문의]",`지역: ${s.full||(currentPosition?'현재 위치 주변':'미입력')}`,`브랜드: ${$('brand').value||'미확인'}`,`모델명: ${$('model').value.trim()||'미확인'}`,`증상: ${symptom||'추가 확인 필요'}`,`에러코드: ${$('error').value.trim()||'없음/미확인'}`,`상세 내용: ${$('memo').value.trim()||'별도 전달'}`,'출장 가능 시간과 출장비·점검비·부품비를 안내 부탁드립니다.'].join('\n');copyText(text).then(()=>notify('문의 문구를 복사했습니다.')).catch(()=>notify('복사를 허용하지 않았습니다.'))});
 $('addQuote').addEventListener('click',()=>{const name=$('quoteName').value.trim(),price=$('quotePrice').value,note=$('quoteNote').value.trim();if(!name||price===''||!Number.isFinite(+price)||+price<0){notify('업체명과 예상 견적을 입력해 주세요.');return}quotes.push({id:Date.now()+'_'+Math.random().toString(36).slice(2,6),name,price:+price,note});put('quotes',JSON.stringify(quotes));$('quoteName').value='';$('quotePrice').value='';$('quoteNote').value='';renderQuotes();notify('수리 견적을 저장했습니다.')});
@@ -539,7 +584,7 @@ async function loadRegions(){let lastError;
    const data=await res.json();if(!Array.isArray(data.regions)||data.regions.length<17)throw Error('지역 데이터 오류');
    const previous=currentScope();regions=data.regions;dataState='remote';
    put('region_cache',JSON.stringify(regions));addSidos();applyRegion(previous);
-   if(sdkReady&&searchClicks>0)doSearch(false);
+   if(sdkReady&&currentScope().sido&&liveStatus==='awaiting')queueAutoSearch(650);
    $('modeStatus').textContent='전국 상세 지역 목록 불러오기 완료 · 선택한 읍·면·동과 지도 API 검색은 별도 기능입니다.';return;
   }catch(e){lastError=e}finally{clearTimeout(timer)}
  }
