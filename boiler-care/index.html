@@ -28,6 +28,18 @@
 .searchdiagnostics{font-size:12px;line-height:1.7;background:#f6f9fa;color:#4c6978;border:1px solid #e0e9ed;border-radius:9px;padding:10px 12px;margin:-3px 0 12px;overflow-wrap:anywhere}
 .searchdiagnostics b{color:#173c4d}
 .searchdiagnostics[data-error="true"]{background:#fff6f0;border-color:#efcbb9;color:#9b482f}
+/* 우동보 v2.7: 업체 순위 설명과 단계별 목록 표시 */
+.sortpanel{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid #dbe9e6;border-radius:12px;background:#f8fcfb;padding:12px 14px;margin:13px 0 15px}
+.sortpanel label{font-size:13px;font-weight:800;color:#214758}
+.sortpanel select{background:#fff;border:1px solid #cbdde2;border-radius:9px;min-height:40px;padding:7px 34px 7px 11px;min-width:205px;max-width:100%;color:#17384a}
+.sortpanel small{flex-basis:100%;font-size:12px;color:#637d89;line-height:1.6}
+.phone-line{margin:8px 0 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px}
+.phone-line a{color:#087b6d;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.phone-line .copy-phone{border:1px solid #cbdde4;background:#fff;color:#315b70;border-radius:7px;font-size:12px;min-height:30px;padding:4px 9px;font-weight:700}
+.more-bar{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 4px}
+.more-bar .more-info{color:#577888;font-size:12px}
+.more-bar .btn{min-width:210px}
+@media(max-width:700px){.sortpanel{align-items:stretch}.sortpanel label{width:100%}.sortpanel select{width:100%;min-width:0}.more-bar .btn{width:100%}}
 </style>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
@@ -91,6 +103,7 @@
 <section class="panel" id="results">
  <div class="resulthead"><h2><span class="number">02</span>수리점 검색 결과</h2><span class="modepill" id="modeLabel">동네별 분리 검색</span></div>
  <p class="desc" id="queryLine">지역을 선택하면 동네별 수리점과 지도 검색 링크를 확인할 수 있습니다.</p>
+ <div class="sortpanel"><label for="shopSort">업체 보기 순서</label><select id="shopSort" aria-label="업체 정렬 방식"><option value="relevance">지역·보일러 전문 관련도순 (기본)</option><option value="distance">가까운 순 (거리 확인된 업체)</option><option value="name">업체명 가나다순</option></select><small>선택한 동 소재 업체를 먼저 표시합니다. ‘관련도순’은 검색어·업종 관련도와 소재지 기준이며, 수리 품질이나 우수업체 평가 순위가 아닙니다. 거리순은 각 지역 그룹 안에서 적용됩니다.</small></div>
  <div class="searchoverview" id="searchOverview" aria-live="polite">검색 버튼을 누르면 지도 업체와 직접 등록 업체의 결과를 구분해 보여드립니다.</div>
  <div class="searchdiagnostics" id="searchDiagnostics" aria-live="polite">연결 및 검색 진행 상태를 확인하는 중입니다. (JavaScript 키는 화면에 표시되지 않습니다.)</div>
  <div class="localhead" style="margin-top:17px"><h3>🔎 ① 지도 API 실시간 검색 업체</h3><span class="modepill" id="liveCount">지도 API 연결 확인 중</span></div>
@@ -138,7 +151,7 @@
  <div class="helpgrid"><div class="warning"><strong>⚠ 가스 냄새가 난다면</strong>불꽃이나 전기 스위치를 조작하지 마세요. 가능하고 안전한 경우 가스 공급을 차단하고, 창문을 열어 환기한 후 안전한 곳으로 대피하여 <strong style="display:inline;color:#a24b23;margin:0">119 또는 도시가스 긴급센터</strong>에 연락하세요. 직접 분해·수리하지 마세요.</div><div class="checklist"><label><input type="checkbox">보일러 모델명과 설치 연도를 확인했습니다.</label><label><input type="checkbox">에러코드 또는 고장 화면을 사진으로 남겼습니다.</label><label><input type="checkbox">출장비·점검비·부품비를 구분해서 문의했습니다.</label><label><input type="checkbox">공식 서비스 여부 및 수리 보증을 확인했습니다.</label><label><input type="checkbox">수리 전 최종 금액 설명을 요청했습니다.</label></div></div>
 </section>
 </div>
-<footer>우리동네보일러(우동보) v2.6 · 동 선택 즉시 검색 · 전국 검색 개선<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
+<footer>우리동네보일러(우동보) v2.7 · 업체 10곳씩 보기 · 정렬 · 전화번호 복사<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
 </main>
 <div class="toast" id="toast" role="status"></div>
 <dialog id="installHelp" class="installmodal" aria-label="우리동네보일러 앱 설치 안내">
@@ -159,7 +172,7 @@ const put=(key,val)=>{try{localStorage.setItem(LS+key,val)}catch(e){}};
 const enc=encodeURIComponent;
 // 운영자는 아래 따옴표 안에 카카오맵 JavaScript 키를 한 번만 넣어 배포합니다.
 // REST API 키/관리자 키는 절대 넣지 마세요. 도메인 제한을 반드시 설정하세요.
-// v2.6 — 2026-11-12: 읍면동 자동검색, 시군구 검색, 거리 기반 인근 지역 보완
+// v2.7 — 2026-11-12: 검색 결과 10곳씩 보기, 관련도/거리/가나다 정렬, 전화 복사
 const DEFAULT_KAKAO_JS_KEY='';
 const regionURLs=[
   'https://raw.githubusercontent.com/junjun3180/JSON-South-Korea-Administrative-District-JSON-Data/main/regions.json',
@@ -224,6 +237,9 @@ const areaKey=()=>[$('sido').value,$('city').value,$('gu').value].join('|');
 // 성공적으로 받아온 전국 목록은 브라우저에 보관하여 다음 방문에도 재사용합니다.
 try{const c=JSON.parse(get('region_cache','null'));if(Array.isArray(c)&&c.length===17&&c.every(r=>r&&Array.isArray(r.districts))){regions=c;dataState='cached'}}catch(e){}
 let filterKind='all',symptom='',currentPosition=null,places=null,sdkReady=false,connecting=false;
+let shopSort='relevance',shownLiveCount=10,shownRegisteredCount=10;
+const PAGE_SIZE=10;
+function resetVisibleCounts(){shownLiveCount=PAGE_SIZE;shownRegisteredCount=PAGE_SIZE}
 let liveResults=[],liveStatus='idle',searchSeq=0,liveScopeName='',lastFilterScope='';
 let searchClicks=0, autoSearches=0, searchStage='검색 전', lastErrorText='', pendingSearch=false;
 let autoSearchTimer=null;const centerCache=new Map();let latestCenter=null;
@@ -299,19 +315,81 @@ for(const [i,k] of kws.entries()){const a=document.createElement('a');a.textCont
 function refreshUI(resetSearch=true){
  const scopeKey=JSON.stringify([currentScope(),$('brand').value,currentPosition]);
  const scopeChanged=lastFilterScope!==scopeKey;lastFilterScope=scopeKey;
- if(scopeChanged&&resetSearch){searchSeq++;liveResults=[];liveStatus='awaiting';searchStage='지역 변경 · 자동 검색 예약';renderApiPlaces()}
+ if(scopeChanged&&resetSearch){resetVisibleCounts();searchSeq++;liveResults=[];liveStatus='awaiting';searchStage='지역 변경 · 자동 검색 예약';renderApiPlaces()}
  updateAreaLabel();links();saveSelection();const q=getQuery();$('queryLine').textContent=q.region?`선택 지역: ${q.region} · ${q.brand||'전체 브랜드'}${symptom?' · '+symptom:''} | 동 소재 업체를 우선 표시하고 인근 업체는 별도로 표시합니다.`:'시·도부터 차례로 선택해 주세요.';renderRegistered();}
 function emptyIn(container,msg){container.replaceChildren();const d=document.createElement('div');d.className='empty';d.textContent=msg;container.append(d)}
 function btnLink(text,url,main){const a=document.createElement('a');a.className='btn '+(main?'btn-main':'btn-out')+' btn-sm';a.textContent=text;a.href=url;a.rel='noopener noreferrer';if(!url.startsWith('tel:'))a.target='_blank';return a}
-function createShopCard(shop){const card=document.createElement('article');card.className='place';const b=document.createElement('span');b.className='shopbadge '+(shop.own?'mybadge':shop.kind==='brand'?'brandbadge':'');b.textContent=shop.own?'내가 등록한 수리점':shop.kind==='brand'?'지역 브랜드 판매·서비스점':'개인·동네 설비/수리점';const name=document.createElement('div');name.className='ptitle';name.textContent=shop.name;const addr=document.createElement('div');addr.className='paddr';addr.textContent=shop.addr||[shop.sido,shop.city,shop.gu,shop.dong].filter(Boolean).join(' ');const meta=document.createElement('div');meta.className='pmeta';meta.textContent=(shop.phone||'전화번호 미확인')+' · '+(shop.note||'출장 가능 여부 확인');const source=document.createElement('small');source.className='source-note';source.textContent=shop.own?'본인 입력·이 기기에 저장':'공개 지도 등록 정보(2026.11.11 확인) · 영업상태 미확인';const act=document.createElement('div');act.className='pactions';if(shop.phone){act.append(btnLink('☎ 전화', 'tel:'+shop.phone.replace(/[^0-9+]/g,''),true))}
-act.append(btnLink('카카오맵 위치',hrefKakao(`${shop.addr||''} ${shop.name}`.trim()),false));act.append(btnLink('네이버지도',hrefNaver(`${shop.addr||''} ${shop.name}`.trim()),false));if(shop.own){const del=document.createElement('button');del.className='btn btn-sm btn-danger';del.textContent='저장 삭제';del.type='button';del.addEventListener('click',()=>{savedShops=savedShops.filter(x=>x.id!==shop.id);put('saved_shops',JSON.stringify(savedShops));renderRegistered();notify('내 기기에서 업체 기록을 삭제했습니다.')});act.append(del)}card.append(b,name,addr,meta,source,act);return card}
+function phoneHref(phone){return 'tel:'+String(phone||'').replace(/[^0-9+]/g,'')}
+function phoneLine(phone,name){
+ const wrap=document.createElement('div');wrap.className='phone-line';
+ if(!phone){wrap.textContent='전화번호 미등록';return wrap}
+ const label=document.createElement('span');label.textContent='전화번호:';
+ const link=document.createElement('a');link.href=phoneHref(phone);link.textContent=phone;link.setAttribute('aria-label',name+' 전화 앱 열기 '+phone);
+ const copy=document.createElement('button');copy.type='button';copy.className='copy-phone';copy.textContent='번호 복사';
+ copy.setAttribute('aria-label',name+' 전화번호 복사');
+ copy.addEventListener('click',()=>copyText(phone).then(()=>notify('전화번호를 복사했습니다.')).catch(()=>notify('전화번호를 복사하지 못했습니다.')));
+ wrap.append(label,link,copy);return wrap;
+}
+function createShopCard(shop){
+ const card=document.createElement('article');card.className='place';
+ const b=document.createElement('span');b.className='shopbadge '+(shop.own?'mybadge':shop.kind==='brand'?'brandbadge':'');
+ b.textContent=shop.own?'내가 등록한 수리점':shop.kind==='brand'?'지역 브랜드 판매·서비스점':'개인·동네 설비/수리점';
+ const name=document.createElement('div');name.className='ptitle';name.textContent=shop.name;
+ const addr=document.createElement('div');addr.className='paddr';addr.textContent=shop.addr||[shop.sido,shop.city,shop.gu,shop.dong].filter(Boolean).join(' ');
+ const phone=phoneLine(shop.phone,shop.name);
+ const meta=document.createElement('div');meta.className='pmeta';meta.textContent=shop.note||'출장 가능 여부 확인';
+ const source=document.createElement('small');source.className='source-note';source.textContent=shop.own?'본인 입력·이 기기에 저장':'공개 지도 등록 정보(2026.11.11 확인) · 영업상태 미확인';
+ const act=document.createElement('div');act.className='pactions';
+ if(shop.phone)act.append(btnLink('☎ 전화 앱 열기',phoneHref(shop.phone),true));
+ act.append(btnLink('카카오맵 위치',hrefKakao(`${shop.addr||''} ${shop.name}`.trim()),false));act.append(btnLink('네이버지도',hrefNaver(`${shop.addr||''} ${shop.name}`.trim()),false));
+ if(shop.own){const del=document.createElement('button');del.className='btn btn-sm btn-danger';del.textContent='저장 삭제';del.type='button';del.addEventListener('click',()=>{savedShops=savedShops.filter(x=>x.id!==shop.id);put('saved_shops',JSON.stringify(savedShops));renderRegistered();notify('내 기기에서 업체 기록을 삭제했습니다.')});act.append(del)}
+ card.append(b,name,addr,phone,meta,source,act);return card;
+}
+function nameSort(a,b){return String(a||'').localeCompare(String(b||''),'ko')}
+// 별점/후기 수치 없이 실시간 카카오 장소 검색의 명칭과 카테고리만 활용한 전문 관련도 정렬.
+function relevanceScore(name,category=''){
+ const n=String(name||'').toLowerCase(),c=String(category||'').toLowerCase();
+ if(/보일러/.test(n)&&/(수리|as|a\/s|닥터|서비스|교체|전문)/.test(n))return 0;
+ if(/보일러/.test(n))return 1;
+ if(/보일러/.test(c))return 2;
+ if(/난방|온수|열관리/.test(n))return 3;
+ if(/설비|배관/.test(n))return 4;
+ if(/난방|온수|열관리|설비|배관/.test(c))return 5;
+ return 6;
+}
+function compareByMode(a,b,nameOf,categoryOf,distanceOf){
+ if(shopSort==='name')return nameSort(nameOf(a),nameOf(b));
+ const da=distanceOf(a),db=distanceOf(b);
+ if(shopSort==='distance'&&Number.isFinite(da)!==Number.isFinite(db))return Number.isFinite(da)?-1:1;
+ if(shopSort==='distance'&&Number.isFinite(da)&&Number.isFinite(db)&&da!==db)return da-db;
+ const ra=relevanceScore(nameOf(a),categoryOf(a)),rb=relevanceScore(nameOf(b),categoryOf(b));
+ if(ra!==rb)return ra-rb;
+ if(Number.isFinite(da)&&Number.isFinite(db)&&da!==db)return da-db;
+ return nameSort(nameOf(a),nameOf(b));
+}
+function sortLiveList(items){return [...items].sort((a,b)=>a.area.rank-b.area.rank||compareByMode(a,b,x=>x.raw.place_name,x=>x.raw.category_name,x=>coordinateDistanceMeters(x.raw,latestCenter)))}
+function sortRegisteredList(items){return [...items].sort((a,b)=>compareByMode(a,b,x=>x.name,x=>x.note,()=>NaN))}
+function moreControl(box,total,shown,callback){
+ if(total<=PAGE_SIZE)return;
+ const row=document.createElement('div');row.className='more-bar';
+ const state=document.createElement('span');state.className='more-info';state.textContent=`전체 ${total}곳 중 ${Math.min(shown,total)}곳 표시`;
+ row.append(state);
+ if(shown<total){const button=document.createElement('button');button.className='btn btn-out btn-sm';button.type='button';button.textContent=`업체 ${Math.min(PAGE_SIZE,total-shown)}곳 더 보기 ↓`;button.addEventListener('click',callback);row.append(button)}
+ box.append(row);
+}
 function matchShop(shop,scope){if(!scope.sido||shop.sido!==scope.sido)return false;if(scope.city&&shop.city!==scope.city)return false;if(scope.gu&&shop.gu!==scope.gu)return false;if(scope.dong&&shop.dong!==scope.dong)return false;
 if(filterKind==='indie'&&shop.kind!=='indie')return false;if(filterKind==='brand'&&shop.kind!=='brand')return false;
 const brand=$('brand').value;if(brand&&brand!=='기타'&&shop.kind==='brand'&&!shop.name.includes(brand.replace('경동나비엔','경동').replace('대성쎌틱','대성')))return false;
 return true}
-function renderRegistered(){const scope=currentScope();const box=$('registered');if(!scope.sido||(!scope.city&&!scope.gu&&scope.sido!=='세종특별자치시')){emptyIn(box,'먼저 시·도와 시·군 또는 구를 선택해 주세요.');$('registeredCount').textContent='지역 선택 전';updateSearchOverview();return}
-const out=[...savedShops.map(s=>({...s,own:true})),...initialShops].filter(s=>matchShop(s,scope));$('registeredCount').textContent=out.length+'곳 (사전 등록)';box.replaceChildren();updateSearchOverview();if(!out.length){emptyIn(box,scope.dong?`${scope.dong} 소재 업체는 현재 앱의 수집 목록에서 확인되지 않았습니다. 상단 지역은 유지한 채 아래 지도를 눌러 더 많은 개인 수리점을 찾아보세요.`:`현재 앱에 등록된 ${scope.full} 업체 목록이 없습니다. 아래 지도 검색 또는 API 검색으로 새 업체를 찾을 수 있습니다.`);return}
-const grid=document.createElement('div');grid.className='placegrid';for(const shop of out)grid.append(createShopCard(shop));box.append(grid)}
+function renderRegistered(){
+ const scope=currentScope(),box=$('registered');
+ if(!scope.sido||(!scope.city&&!scope.gu&&scope.sido!=='세종특별자치시')){emptyIn(box,'먼저 시·도와 시·군 또는 구를 선택해 주세요.');$('registeredCount').textContent='지역 선택 전';updateSearchOverview();return}
+ const out=sortRegisteredList([...savedShops.map(s=>({...s,own:true})),...initialShops].filter(s=>matchShop(s,scope)));
+ $('registeredCount').textContent=out.length+'곳 (사전 등록)';box.replaceChildren();updateSearchOverview();
+ if(!out.length){emptyIn(box,scope.dong?`${scope.dong} 소재 업체는 현재 앱의 수집 목록에서 확인되지 않았습니다. 상단 지역은 유지한 채 아래 지도를 눌러 더 많은 개인 수리점을 찾아보세요.`:`현재 앱에 등록된 ${scope.full} 업체 목록이 없습니다. 아래 지도 검색 또는 API 검색으로 새 업체를 찾을 수 있습니다.`);return}
+ const grid=document.createElement('div');grid.className='placegrid';out.slice(0,shownRegisteredCount).forEach(shop=>grid.append(createShopCard(shop)));box.append(grid);
+ moreControl(box,out.length,shownRegisteredCount,()=>{shownRegisteredCount+=PAGE_SIZE;renderRegistered()});
+}
 function renderOfficial(){const v=$('brand').value;const eligible=brands.filter(b=>!v||v==='기타'||v==='롯데보일러'||b.name===v);const grid=$('officialGrid');grid.replaceChildren();for(const b of eligible){const card=document.createElement('div');card.className='official';const title=document.createElement('div');title.className='offtitle';title.textContent=b.name;const sub=document.createElement('div');sub.className='offsub';sub.textContent=b.note;const phone=document.createElement('div');phone.className='offnum';phone.textContent=b.phone;const actions=document.createElement('div');actions.className='offbtns';actions.append(btnLink('☎ 전화하기','tel:'+b.phone.replace(/-/g,''),true),btnLink('공식 사이트 ↗',b.site,false));card.append(title,sub,phone,actions);grid.append(card)}if(v==='롯데보일러'){const msg=document.createElement('div');msg.className='empty';msg.style.gridColumn='1/-1';msg.textContent='롯데보일러는 제품 모델에 따른 A/S 주체를 먼저 확인해 주세요.';grid.prepend(msg)}}
 // API 결과는 실시간 화면 조회만 유지하며, 지도 API 결과를 앱 자체 DB에 영구 저장하지 않습니다.
 function simpleArea(text){return (text||'').replace(/\s+/g,' ').trim()}
@@ -358,13 +436,15 @@ function makeApiCard(item){
  badge.textContent=item.area.label+' · '+(item.kind==='brand'?'브랜드 관련점':'동네 수리·설비');
  const title=document.createElement('div');title.className='ptitle';title.textContent=p.place_name||'업체명 미확인';
  const addr=document.createElement('div');addr.className='paddr';addr.textContent=p.road_address_name||p.address_name||'주소 미등록';
- const meta=document.createElement('div');meta.className='pmeta';meta.textContent=(p.phone||'전화번호 미등록')+(Number.isFinite(coordinateDistanceMeters(p,latestCenter))?' · 기준점 약 '+(coordinateDistanceMeters(p,latestCenter)/1000).toFixed(1)+'km':'');
- const note=document.createElement('div');note.className='live-note';note.textContent='카카오 지도 검색 정보 · 영업/출장/공식 인증 여부 미확인';
+ const phone=phoneLine(p.phone,p.place_name||'업체');
+ const dist=coordinateDistanceMeters(p,latestCenter);
+ const meta=document.createElement('div');meta.className='pmeta';meta.textContent=Number.isFinite(dist)?'검색 기준점에서 직선거리 약 '+(dist/1000).toFixed(1)+'km':'위치 간 거리 확인 불가';
+ const note=document.createElement('div');note.className='live-note';note.textContent='카카오 지도 검색 정보 · 영업/출장/공식 인증/수리 품질 미확인';
  const acts=document.createElement('div');acts.className='pactions';
- if(p.phone)acts.append(btnLink('☎ 전화','tel:'+p.phone.replace(/[^0-9+]/g,''),true));
+ if(p.phone)acts.append(btnLink('☎ 전화 앱 열기',phoneHref(p.phone),true));
  acts.append(btnLink('카카오맵 상세',p.place_url||hrefKakao(`${p.place_name} ${p.address_name||''}`),false));
  acts.append(btnLink('네이버지도',hrefNaver(`${p.place_name} ${p.address_name||''}`),false));
- card.append(badge,title,addr,meta,note,acts);return card;
+ card.append(badge,title,addr,phone,meta,note,acts);return card;
 }
 function showSearchDiagnostics(){
  const box=$('searchDiagnostics');if(!box)return;
@@ -387,15 +467,19 @@ function renderApiPlaces(){
  if(liveStatus==='awaiting'){emptyIn(box,'선택한 지역을 자동으로 검색합니다. 카카오 API 미연결 시 아래 연결 설정을 확인하세요.');$('liveCount').textContent='자동 검색 준비';return}
  if(liveStatus==='disconnected'){emptyIn(box,'실시간 검색을 사용하려면 카카오맵 JavaScript 키를 최초 1회 설정해야 합니다. 아래 지도 링크는 키 없이 사용할 수 있습니다.');$('liveCount').textContent='지도 API 연결 필요';return}
  if(liveStatus==='error'){emptyIn(box,'지도 API 검색 오류: '+(lastErrorText||'요청을 완료하지 못했습니다.')+' · 실제 업체가 0곳이라는 의미는 아닙니다.');$('liveCount').textContent='조회 오류';return}
- const visible=liveResults.filter(apiFilter);$('liveCount').textContent=visible.length+'곳 실시간';
+ const visible=sortLiveList(liveResults.filter(apiFilter));$('liveCount').textContent=visible.length+'곳 실시간';
  if(!visible.length){emptyIn(box,liveStatus==='partial'?'일부 요청에서 오류가 있었고 표시 가능한 업체가 없습니다. 잠시 후 다시 검색하거나 지도 링크를 확인하세요.':'현재 조건에 맞는 지도 등록 업체를 찾지 못했습니다. 검색 범위를 넓히거나 지도 링크에서 확인하세요.');return}
  const source=document.createElement('p');source.className='search-state';source.textContent=`${liveScopeName} · 실시간 ${visible.length}곳 (조회 결과 최대 60곳, 직접 등록 업체와 중복 가능)${liveStatus==='partial'?' · 일부 검색 요청 실패':''}`;box.append(source);
+ const portion=visible.slice(0,shownLiveCount);
  const groups=[{kind:'local',title:'① 선택한 동·지역 소재',desc:'지번 주소 등에서 선택 지역이 확인된 업체'},{kind:'near',title:'② 같은 구 또는 주변 지역',desc:'선택 동 밖에 소재하는 업체 · 출장 가능 여부는 전화 문의'}];
- for(const group of groups){const arr=visible.filter(v=>v.area.kind===group.kind);if(!arr.length)continue;
-  const heading=document.createElement('h4');heading.className='group-title';heading.textContent=group.title+' · '+arr.length+'곳';box.append(heading);
+ for(const group of groups){
+  const arr=portion.filter(v=>v.area.kind===group.kind);if(!arr.length)continue;
+  const total=visible.filter(v=>v.area.kind===group.kind).length;
+  const heading=document.createElement('h4');heading.className='group-title';heading.textContent=group.title+' · '+total+'곳';box.append(heading);
   const sub=document.createElement('p');sub.className='group-desc';sub.textContent=group.desc;box.append(sub);
   const grid=document.createElement('div');grid.className='placegrid live-place-grid';arr.forEach(v=>grid.append(makeApiCard(v)));box.append(grid);
  }
+ moreControl(box,visible.length,shownLiveCount,()=>{shownLiveCount+=PAGE_SIZE;renderApiPlaces()});
 }
 function keywordSearchPaged(term,opts,maxPages=1){
  return new Promise((resolve,reject)=>{
@@ -473,7 +557,7 @@ async function liveSearch(){
    const wide={location:new kakao.maps.LatLng(center.lat,center.lng),radius:20000,sort:kakao.maps.services.SortBy.DISTANCE};
    await collect(['보일러','설비'].map(term=>({term,opts:wide,pages:1})));if(seq!==searchSeq)return;
   }
-  liveResults=sortPlaces([...unique.values()]).slice(0,60);liveStatus=!successes&&failures?'error':failures?'partial':'success';
+  liveResults=sortPlaces([...unique.values()]).slice(0,60);resetVisibleCounts();liveStatus=!successes&&failures?'error':failures?'partial':'success';
   lastErrorText=failures?failuresList[0]||'일부 검색 요청이 실패했습니다.':'';
   searchStage=`검색 종료 (성공 ${successes}회 / 오류 ${failures}회 · 표시 ${liveResults.length}곳)`;renderApiPlaces();
  }catch(e){if(seq!==searchSeq)return;liveResults=[];liveStatus='error';lastErrorText=String(e?.message||e).slice(0,160);searchStage='검색 도중 예외 발생';renderApiPlaces()}
@@ -564,7 +648,8 @@ $('brand').addEventListener('change',()=>{put('brand',$('brand').value);renderOf
 $('search').addEventListener('click',()=>doSearch());
 $('exampleArea').addEventListener('click',()=>{applyRegion({sido:'서울특별시',city:'',gu:'중랑구',dong:'면목동'});doSearch();});
 $('symptoms').addEventListener('click',e=>{const btn=e.target.closest('[data-symptom]');if(!btn)return;symptom=btn.dataset.symptom;document.querySelectorAll('[data-symptom]').forEach(c=>c.classList.toggle('on',c===btn));refreshUI()});
-$('results').querySelector('.filterbar').addEventListener('click',e=>{const btn=e.target.closest('[data-filter]');if(!btn)return;filterKind=btn.dataset.filter;document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n===btn));renderRegistered();if(liveStatus!=='idle')renderApiPlaces()});
+$('results').querySelector('.filterbar').addEventListener('click',e=>{const btn=e.target.closest('[data-filter]');if(!btn)return;filterKind=btn.dataset.filter;resetVisibleCounts();document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n===btn));renderRegistered();if(liveStatus!=='idle')renderApiPlaces()});
+$('shopSort').addEventListener('change',()=>{shopSort=$('shopSort').value;resetVisibleCounts();renderRegistered();renderApiPlaces()});
 $('saveShop').addEventListener('click',()=>{const s=currentScope();if(!s.sido||(!s.gu&&!s.city)){notify('업체를 등록할 지역을 먼저 선택해 주세요.');return}if(!s.dong){notify('개인 업체를 등록하려면 읍·면·동까지 선택해 주세요.');return}const name=$('regName').value.trim(),phone=$('regPhone').value.trim(),addr=$('regAddr').value.trim(),note=$('regNote').value.trim();if(!name){notify('업체명을 입력해 주세요.');$('regName').focus();return}const item={...s,id:Date.now()+'_'+Math.random().toString(36).slice(2,7),name,phone,addr:addr||s.full,kind:'indie',note};savedShops.push(item);put('saved_shops',JSON.stringify(savedShops));$('regName').value='';$('regPhone').value='';$('regAddr').value='';$('regNote').value='';filterKind='all';document.querySelectorAll('[data-filter]').forEach(n=>n.classList.toggle('active',n.dataset.filter==='all'));renderRegistered();notify('선택한 동네에 개인 수리점 기록을 저장했습니다.')});
 $('connect').addEventListener('click',()=>connectSDK());
 $('includeNearby').addEventListener('change',()=>{if(sdkReady)doSearch(false);else renderApiPlaces()});
