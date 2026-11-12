@@ -138,7 +138,7 @@
  <div class="helpgrid"><div class="warning"><strong>⚠ 가스 냄새가 난다면</strong>불꽃이나 전기 스위치를 조작하지 마세요. 가능하고 안전한 경우 가스 공급을 차단하고, 창문을 열어 환기한 후 안전한 곳으로 대피하여 <strong style="display:inline;color:#a24b23;margin:0">119 또는 도시가스 긴급센터</strong>에 연락하세요. 직접 분해·수리하지 마세요.</div><div class="checklist"><label><input type="checkbox">보일러 모델명과 설치 연도를 확인했습니다.</label><label><input type="checkbox">에러코드 또는 고장 화면을 사진으로 남겼습니다.</label><label><input type="checkbox">출장비·점검비·부품비를 구분해서 문의했습니다.</label><label><input type="checkbox">공식 서비스 여부 및 수리 보증을 확인했습니다.</label><label><input type="checkbox">수리 전 최종 금액 설명을 요청했습니다.</label></div></div>
 </section>
 </div>
-<footer>우리동네보일러(우동보) v2.4 · 생활 편의용 수리점 검색 도구<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
+<footer>우리동네보일러(우동보) v2.5 · 생활 편의용 수리점 검색 도구<br>제작·작성: BC<br>앱 운영자가 개별 수리점의 공식 인증, 가격 및 수리 품질을 보증하지는 않습니다.</footer>
 </main>
 <div class="toast" id="toast" role="status"></div>
 <dialog id="installHelp" class="installmodal" aria-label="우리동네보일러 앱 설치 안내">
@@ -159,6 +159,7 @@ const put=(key,val)=>{try{localStorage.setItem(LS+key,val)}catch(e){}};
 const enc=encodeURIComponent;
 // 운영자는 아래 따옴표 안에 카카오맵 JavaScript 키를 한 번만 넣어 배포합니다.
 // REST API 키/관리자 키는 절대 넣지 마세요. 도메인 제한을 반드시 설정하세요.
+// v2.5 — 2026-11-12: 카카오 Maps autoload=false 초기화 순서 수정
 const DEFAULT_KAKAO_JS_KEY='';
 const regionURLs=[
   'https://raw.githubusercontent.com/junjun3180/JSON-South-Korea-Administrative-District-JSON-Data/main/regions.json',
@@ -470,10 +471,15 @@ function connectSDK(keyOverride=''){
  }
  script.onload=()=>{
   try{
-   if(!window.kakao?.maps?.load||!window.kakao?.maps?.services?.Places)throw Error('카카오 지도 서비스를 초기화할 수 없습니다.');
+   // autoload=false: script.onload 시점에는 services 라이브러리가 아직 없을 수 있습니다.
+   // 카카오 공식 안내대로 maps.load 콜백 안에서만 Places/Geocoder를 확인합니다.
+   if(typeof window.kakao?.maps?.load!=='function')throw Error('카카오 지도 로더를 찾지 못했습니다. SDK 파일·앱 키·허용 도메인을 확인하세요.');
    window.kakao.maps.load(()=>{
     try{
-     if(ended)return;new window.kakao.maps.services.Places();
+     if(ended)return;
+     if(typeof window.kakao?.maps?.services?.Places!=='function' || typeof window.kakao.maps.services.Geocoder!=='function')
+      throw Error('장소검색 라이브러리(services)가 로드되지 않았습니다. SDK 권한·네트워크·도메인을 확인하세요.');
+     new window.kakao.maps.services.Places();
      ended=true;clearTimeout(watchdog);sdkReady=true;connecting=false;
      if(!DEFAULT_KAKAO_JS_KEY)put('map_js_key',key);
      $('apiMessage').textContent='지도 SDK 연결 완료. 실제 장소 조회를 실행하여 결과를 확인합니다.';
